@@ -1,0 +1,32 @@
+html {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: auto;
+}
+
+h1,h2,h3,h4,h5,p {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-weight: 300;
+}
+
+.navbar {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: lightblue;
+  padding: 15px 5px;
+}

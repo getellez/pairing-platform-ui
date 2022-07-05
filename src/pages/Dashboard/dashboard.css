@@ -1,0 +1,54 @@
+.dashboard {
+  background-color: rgba(0, 0, 0, 0,2);
+  height: 100%;
+  padding: 20px 5px;
+}
+.membersList {
+  display: flex;
+  margin-top: 10px;
+}
+.membersList .avatar, .boardsList__item .avatar {
+  border-radius: 50%;
+  margin: 0 10px;
+  object-fit: cover;
+  /* height: auto; */
+}
+
+.boardsList {
+  column-gap: 2%;
+  display: grid;
+  grid-template-columns: 47% 47%;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.boardsList__item {
+  border-radius: 10px;
+  border: 0.5px solid gray;
+  box-sizing: border-box;
+  display: block;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  padding: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.boardsList__item-task {
+  font-weight: bold;
+  height: max-content;
+  left: 50;
+  margin: 5px;
+  padding: 2px;
+  position: relative;
+  top: 0;
+  width: max-content;
+}
+
+.boardsList__item__members-container {
+  display: flex;
+}
+
+.boardsList__item-title {
+  font-weight: 300;
+}
