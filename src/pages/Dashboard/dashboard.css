@@ -1,11 +1,26 @@
 .dashboard {
-  background-color: rgba(0, 0, 0, 0,2);
   height: 100%;
   padding: 20px 5px;
+}
+
+.controlPanel {
+  display: flex;
+  justify-content: end;
+}
+.controlPanel div {
+  margin: 0 5px;
+}
+
+.membersList-container {
+  background-color: white;
+  width: 100%;
+  padding: 20px;
 }
 .membersList {
   display: flex;
   margin-top: 10px;
+  padding: 20px;
+  /* width: 100%; */
 }
 .membersList .avatar, .boardsList__item .avatar {
   border-radius: 50%;
@@ -23,8 +38,9 @@
 }
 
 .boardsList__item {
+  background-color: #FFF;
   border-radius: 10px;
-  border: 0.5px solid gray;
+  border: 0.5px solid rgba(0, 0, 0, 0.09);
   box-sizing: border-box;
   display: block;
   flex-wrap: wrap;
