@@ -3,33 +3,43 @@
   padding: 20px 5px;
 }
 
-.controlPanel {
+.control {
   display: flex;
   justify-content: end;
 }
-.controlPanel div {
+
+.control__action {
   margin: 0 5px;
+  background-color: #7FC8F8;
+  padding: 10px 25px;
+  border-radius: 3px;
+  color: #FFF;
+  cursor: pointer;
 }
 
-.membersList-container {
+.members__container {
   background-color: white;
   width: 100%;
   padding: 20px;
 }
-.membersList {
+
+.members {
   display: flex;
   margin-top: 10px;
   padding: 20px;
-  /* width: 100%; */
 }
-.membersList .avatar, .boardsList__item .avatar {
+
+.members__avatar {
   border-radius: 50%;
   margin: 0 10px;
   object-fit: cover;
-  /* height: auto; */
 }
 
-.boardsList {
+.members__avatar-new {
+  cursor: pointer;
+}
+
+.tasks {
   column-gap: 2%;
   display: grid;
   grid-template-columns: 47% 47%;
@@ -37,20 +47,20 @@
   margin-top: 20px;
 }
 
-.boardsList__item {
+.tasks__column {
   background-color: #FFF;
   border-radius: 10px;
   border: 0.5px solid rgba(0, 0, 0, 0.09);
   box-sizing: border-box;
   display: block;
   flex-wrap: wrap;
-  margin: 20px 0;
-  padding: 5px;
+  margin: 10px 0;
+  padding: 10px 10px;
   position: relative;
   width: 100%;
 }
 
-.boardsList__item-task {
+.tasks__header-container {
   font-weight: bold;
   height: max-content;
   left: 50;
@@ -61,10 +71,16 @@
   width: max-content;
 }
 
-.boardsList__item__members-container {
+.tasks__member {
   display: flex;
 }
 
-.boardsList__item-title {
+.tasks__members-avatar {
+  border-radius: 50%;
+  margin: 0 10px;
+  object-fit: cover;
+}
+
+.tasks__header-title {
   font-weight: 300;
 }
