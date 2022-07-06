@@ -8,10 +8,10 @@ export const TasksColumn = ({ title, imgMembers }) => {
           <div className='tasks__header-container'>
             <p className='tasks__header-title'>Retro authorization table</p>
           </div>
-          <div className='tasks__member'>
+          <div className='tasks__members'>
             {
               imgMembers.map(imgUrl => (
-                <div className='tasks__member-container'>
+                <div className='tasks__members-container'>
                   <img className='tasks__members-avatar' src={imgUrl} alt="" width={70}/>
                 </div>
               ))

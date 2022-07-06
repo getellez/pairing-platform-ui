@@ -1,4 +1,3 @@
-
 .tasks__column {
   background-color: #FFF;
   border-radius: 10px;
@@ -23,7 +22,7 @@
   width: max-content;
 }
 
-.tasks__member {
+.tasks__members {
   display: flex;
 }
 
