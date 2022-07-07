@@ -1,0 +1,19 @@
+.NewTask {
+  background-color: rgba(127, 200, 248, 0.4);
+  border: 2px solid white;
+  border-radius: 10px;
+  border-style: dashed;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 25px 10px;
+}
+
+.NewTask__header-container {
+  text-align: center;
+}
+
+.NewTask__header-title {
+  font-weight: 400;
+}

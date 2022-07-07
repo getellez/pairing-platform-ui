@@ -1,6 +1,6 @@
-import './taskColumn.css'
+import './Task.css'
 
-export const TasksColumn = ({ title, imgMembers }) => {
+export const Task = ({ title, imgMembers }) => {
   
   return (
     <>

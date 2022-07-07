@@ -1,5 +1,5 @@
-import { Dashboard } from './pages/Dashboard/dashboard'
-import './app.css'
+import { Dashboard } from './pages/Dashboard/Dashboard'
+import './App.css'
 
 function App() {
 
