@@ -31,7 +31,6 @@ export const Dashboard = () => {
     <DragDropContext onDragEnd={handleSortMembers}>
       <section className='dashboard'>
         <Controls />
-        <p className='dasboard__title'>Team members</p>
         <Members members={members} />
         <section className='tasks'>
           <Task title="Prod support" imgMembers={[ monkeyAvatarUrl, monkeyOldAvatarUrl, monkeyAdidasAvatarUrl ]} />

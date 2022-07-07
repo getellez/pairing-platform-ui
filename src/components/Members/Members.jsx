@@ -5,6 +5,7 @@ import './members.css'
 export const Members = ({ members }) => {
   return (
       <section className='members'>
+        <p className='dasboard__title'>Team members</p>
         <div className="members__wrapper">
           <div className="members__container">
             <img className='members__avatar members__new-avatar' src={addMemberAvatarUrl} alt="" width={100} />
