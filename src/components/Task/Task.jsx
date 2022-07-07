@@ -1,6 +1,6 @@
 import './Task.css'
 
-export const Task = ({ title, imgMembers }) => {
+export const Task = ({ title, members }) => {
   
   return (
     <>
@@ -10,9 +10,9 @@ export const Task = ({ title, imgMembers }) => {
           </div>
           <div className='tasks__members'>
             {
-              imgMembers.map((imgUrl, index) => (
+              members.map((member, index) => (
                 <div key={index} className='tasks__members-container'>
-                  <img className='tasks__members-avatar' src={imgUrl} alt="" width={70}/>
+                  <img className='tasks__members-avatar' src={member.image} alt="" width={70}/>
                 </div>
               ))
             }

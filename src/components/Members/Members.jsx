@@ -2,7 +2,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import addMemberAvatarUrl from '../../pages/Dashboard/img/add_avatar.jpg'
 import './members.css'
 
-export const Members = ({ members }) => {
+export const Members = ({ dashboard }) => {
   return (
       <section className='members'>
         <p className='dasboard__title'>Team members</p>
@@ -18,7 +18,7 @@ export const Members = ({ members }) => {
 
               className="members__container">
                 {
-                  members.map((member, index) => (
+                  dashboard.members.map((member, index) => (
                     <Draggable key={member.id} draggableId={member.id} index={index}>
                       { (draggableProvided) => <div
                         {...draggableProvided.draggableProps} 
@@ -27,7 +27,7 @@ export const Members = ({ members }) => {
                       >
                         <img 
                             className='members__avatar' 
-                            src={member.img} 
+                            src={member.image} 
                             alt="" 
                             width={100} />
                       </div>

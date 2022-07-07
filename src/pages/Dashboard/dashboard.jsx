@@ -5,7 +5,7 @@ import { Controls } from '../../components/Controls/Controls';
 import { DragDropContext } from 'react-beautiful-dnd'
 import { sortMembers } from '../../utils/sortMembers';
 import { NewTask } from '../../components/NewTask/NewTask';
-
+import { initialData } from '../../utils/data'
 
 import monkeyAvatarUrl from './img/monkey_avatar.jpeg';
 import monkeyAdidasAvatarUrl from './img/monkey_adidas_avatar.jpeg';
@@ -20,23 +20,28 @@ const membersList = [
 ]
 
 export const Dashboard = () => {
-  const [members, setMembers] = useState(membersList)
-  
+  const [dashboard, setDashboard] = useState(initialData)
   const handleSortMembers = ({ source, destination }) => {
-    const sortedMembers = sortMembers(source, destination, members)
-    setMembers([...sortedMembers])
+    const sortedMembers = sortMembers(source, destination, dashboard.members);
+    const newDashboard = dashboard;
+    newDashboard.members = sortedMembers;
+    setDashboard(newDashboard)
   }
 
   return (
-    <DragDropContext onDragEnd={handleSortMembers}>
+    <DragDropContext onDragEnd={(handleSortMembers)}>
       <section className='dashboard'>
         <Controls />
-        <Members members={members} />
+        <Members dashboard={dashboard}  />
         <section className='tasks'>
-          <Task title="Prod support" imgMembers={[ monkeyAvatarUrl, monkeyOldAvatarUrl, monkeyAdidasAvatarUrl ]} />
-          <Task title="E2E Testing" imgMembers={[ monkeyAvatarUrl, , monkeyAdidasAvatarUrl ]} />
-          <Task title="Retro authorization" imgMembers={[ monkeyAvatarUrl, monkeyOldAvatarUrl  ]} />
-          <Task title="Reconciliation screen" imgMembers={[ monkeyAvatarUrl, monkeyOldAvatarUrl, monkeyAdidasAvatarUrl ]} />
+          {
+            dashboard.tasks.map(task => (
+              <Task key={task.id} title={task.title} members={task.membersAssigned} />
+            ))
+          }
+          {/* <Task title="E2E Testing" members={[ monkeyAvatarUrl, , monkeyAdidasAvatarUrl ]} />
+          <Task title="Retro authorization" members={[ monkeyAvatarUrl, monkeyOldAvatarUrl  ]} />
+          <Task title="Reconciliation screen" members={[ monkeyAvatarUrl, monkeyOldAvatarUrl, monkeyAdidasAvatarUrl ]} /> */}
           <NewTask />
         </section>
       </section>
