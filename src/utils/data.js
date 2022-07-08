@@ -1,6 +1,7 @@
 import monkeyAdidasAvatar from '../pages/Dashboard/img/monkey_adidas_avatar.jpeg'
 import monkeyAvatar from '../pages/Dashboard/img/monkey_avatar.jpeg'
 import monkeyOldAvatar from '../pages/Dashboard/img/monkey_old_avatar.jpeg'
+import bunnyAvatar from '../pages/Dashboard/img/bunny_avatar.jpeg'
 
 export const initialData = {
   "id": "1",
@@ -18,7 +19,7 @@ export const initialData = {
     },
     {
       "id": '3',
-      "name": "Jane Doe",
+      "name": "Jhon Doe",
       "image": monkeyOldAvatar
     }
   ],
@@ -28,11 +29,11 @@ export const initialData = {
       "dashboardId": "1",
       "title": "some random task name",
       "membersAssigned": [
-        // {
-        //   "id": '1',
-        //   "name": "Germán Tellez",
-        //   "image": monkeyAdidasAvatar
-        // }
+        {
+          "id": '1',
+          "name": "Jane Doe",
+          "image": bunnyAvatar
+        }
       ],
       "tags": [
         {

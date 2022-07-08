@@ -19,11 +19,5 @@
 
 
 
-.tasks {
-  column-gap: 2%;
-  display: grid;
-  grid-template-columns: 48% 48%;
-  justify-content: center;
-  margin-top: 20px;
-}
+
 
