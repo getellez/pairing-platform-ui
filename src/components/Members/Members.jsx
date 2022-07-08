@@ -15,22 +15,23 @@ export const Members = ({ dashboard }) => {
               <div 
               {...droppableProvided.droppableProps} 
               ref={droppableProvided.innerRef} 
-
               className="members__container">
                 {
                   dashboard.members.map((member, index) => (
                     <Draggable key={member.id} draggableId={member.id} index={index}>
-                      { (draggableProvided) => <div
-                        {...draggableProvided.draggableProps} 
-                        ref={draggableProvided.innerRef} 
-                        {...draggableProvided.dragHandleProps} 
-                      >
-                        <img 
-                            className='members__avatar' 
-                            src={member.image} 
-                            alt="" 
-                            width={100} />
-                      </div>
+                      { (draggableProvided) => (
+                        <div
+                          {...draggableProvided.draggableProps} 
+                          ref={draggableProvided.innerRef} 
+                          {...draggableProvided.dragHandleProps} 
+                          >
+                            <img 
+                                className='members__avatar' 
+                                src={member.image} 
+                                alt="" 
+                                width={100} />
+                        </div>
+                      )
                       }
                     </Draggable>
                   ))

@@ -8,7 +8,7 @@ export const TasksList = ({ dashboard }) => {
     <section className='tasks'>
           {
             dashboard.tasks.map(task => (
-              <Task key={task.id} title={task.title} members={task.membersAssigned} />
+              <Task key={task.id} id={task.id} title={task.title} members={task.assignedMembers} />
             ))
           }
           <NewTask />

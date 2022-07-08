@@ -10,11 +10,17 @@ import './Dashboard.css'
 
 export const Dashboard = () => {
   const [dashboard, setDashboard] = useState(initialData)
+  
   const handleSortMembers = ({ source, destination }) => {
-    const sortedMembers = sortMembers(source, destination, dashboard.members);
-    const newDashboard = dashboard;
-    newDashboard.members = sortedMembers;
-    setDashboard(newDashboard)
+    if (!destination) {
+      return;
+    }
+    if (source.index === destination.index && source.droppableId === destination.droppableId) {
+      return;
+    }
+    const sortedDashboard = sortMembers(source, destination, dashboard);
+    setDashboard(sortedDashboard)
+    
   }
 
   return (

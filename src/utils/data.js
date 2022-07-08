@@ -8,32 +8,60 @@ export const initialData = {
   "title": "any title",
   "members": [
     {
-      "id": '1',
+      "id": 'member-1',
       "name": "Germán Tellez",
       "image": monkeyAdidasAvatar
     },
     {
-      "id": '2',
+      "id": 'member-2',
       "name": "Alejo",
       "image": monkeyAvatar
     },
     {
-      "id": '3',
+      "id": 'member-3',
       "name": "Jhon Doe",
       "image": monkeyOldAvatar
     }
   ],
   "tasks": [
     {
-      "id": "1",
+      "id": "task-1",
       "dashboardId": "1",
       "title": "some random task name",
-      "membersAssigned": [
+      "assignedMembers": [
         {
-          "id": '1',
+          "id": 'member-4',
           "name": "Jane Doe",
           "image": bunnyAvatar
+        },
+        {
+          "id": 'member-5',
+          "name": "Alice",
+          "image": bunnyAvatar
+        },
+      ],
+      "tags": [
+        {
+          "title": "Room1",
+          "url": "https://www.google.com.co"
         }
+      ]
+    },
+    {
+      "id": "task-2",
+      "dashboardId": "1",
+      "title": "some random task name #2",
+      "assignedMembers": [
+        {
+          "id": 'member-6',
+          "name": "Karen Doe ",
+          "image": bunnyAvatar
+        },
+        {
+          "id": 'member-7',
+          "name": "Mark",
+          "image": monkeyAdidasAvatar
+        },
       ],
       "tags": [
         {
