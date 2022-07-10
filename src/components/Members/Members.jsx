@@ -1,6 +1,7 @@
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import addMemberAvatarUrl from '../../pages/Dashboard/img/add_avatar.jpg'
 import './members.css'
+import { DroppableMember } from '../DroppableMember/DroppableMember';
 
 export const Members = ({ dashboard }) => {
   return (
@@ -10,37 +11,7 @@ export const Members = ({ dashboard }) => {
           <div className="members__container">
             <img className='members__avatar members__new-avatar' src={addMemberAvatarUrl} alt="" width={100} />
           </div>
-          <Droppable droppableId='members' direction='horizontal'>
-            { (droppableProvided) => (
-              <div 
-              {...droppableProvided.droppableProps} 
-              ref={droppableProvided.innerRef} 
-              className="members__container">
-                {
-                  dashboard.members.map((member, index) => (
-                    <Draggable key={member.id} draggableId={member.id} index={index}>
-                      { (draggableProvided) => (
-                        <div
-                          {...draggableProvided.draggableProps} 
-                          ref={draggableProvided.innerRef} 
-                          {...draggableProvided.dragHandleProps} 
-                          >
-                            <img 
-                                className='members__avatar' 
-                                src={member.image} 
-                                alt="" 
-                                width={100} />
-                        </div>
-                      )
-                      }
-                    </Draggable>
-                  ))
-                }
-                {droppableProvided.placeholder}
-              </div>
-              )
-            }
-          </Droppable>
+          <DroppableMember dashboard={dashboard} />
         </div>
       </section>
   )

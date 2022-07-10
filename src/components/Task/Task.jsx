@@ -1,4 +1,5 @@
 import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { DraggableTaskMember } from '../DraggableTaskMember/DraggableTaskMember'
 import './Task.css'
 
 export const Task = ({ id, title, members }) => {
@@ -14,27 +15,17 @@ export const Task = ({ id, title, members }) => {
           <div className='tasks__header-container'>
             <p className='tasks__header-title'>{title}</p>
           </div>
+
           <div className='tasks__members'>
             {
               members.map((member, index) => (
-                <Draggable key={member.id} draggableId={member.id} index={index}>
-                  {
-                    (draggableProvided) => (
-                      <div 
-                      className='tasks__members-container'
-                      {...draggableProvided.draggableProps} 
-                      ref={draggableProvided.innerRef} 
-                      {...draggableProvided.dragHandleProps}>
-                        <img className='tasks__members-avatar' src={member.image} alt={member.name} width={70}/>
-                      </div>
-                    )
-                  }
-                </Draggable>
+                <DraggableTaskMember key={member.id} member={member} index={index} />
                 )
               )
             }
           </div>
           {droppableProvided.placeholder}
+          
         </div>
         )
       }
