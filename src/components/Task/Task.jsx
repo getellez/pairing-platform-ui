@@ -4,8 +4,6 @@ import { DroppableTaskMember } from '../DroppableTaskMember/DroppableTaskMember'
 export const Task = ({ id, title, members }) => {
   return (
     <div
-      // {...droppableProvided.droppableProps} 
-      // ref={droppableProvided.innerRef} 
       className='tasks__column'
     >
       <div className='tasks__header-container'>
