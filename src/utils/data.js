@@ -27,7 +27,7 @@ export const initialData = {
     {
       "id": "task-1",
       "dashboardId": "1",
-      "title": "some random task name",
+      "title": "Update documentation",
       "assignedMembers": [
         {
           "id": 'member-4',
@@ -50,7 +50,7 @@ export const initialData = {
     {
       "id": "task-2",
       "dashboardId": "1",
-      "title": "some random task name #2",
+      "title": "Setup husky",
       "assignedMembers": [
         {
           "id": 'member-6',

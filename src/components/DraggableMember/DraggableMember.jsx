@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { Draggable } from "react-beautiful-dnd"
+import './DraggableMember.css'
 
 export const DraggableMember = ({ member, index }) => {
   return (
@@ -16,6 +17,7 @@ export const DraggableMember = ({ member, index }) => {
               src={member.image}
               alt=""
               width={100} />
+            <div className='members__name'><small>{member.name}</small></div>
           </div>
         )
       }

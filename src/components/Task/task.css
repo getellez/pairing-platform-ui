@@ -32,6 +32,11 @@
   object-fit: cover;
 }
 
+.tasks__members-name {
+  text-align: center;
+  font-weight: 300;
+}
+
 .tasks__header-title {
   font-weight: 300;
 }
