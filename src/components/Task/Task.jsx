@@ -17,7 +17,7 @@ export const Task = ({ taskId, members, title }) => {
       taskId && (
         <div className='tasks__column'>
           <div className='tasks__header-container'>
-            <Input placeholder='Type a new title...' bordered={false} name='title' onChange={handleOnChangeTaskTitle} value={taskTitle} />
+            <Input placeholder='Type a new title...' bordered={false} name='title' onChange={handleOnChangeTaskTitle} value={title} />
           </div>
           <DroppableTaskMember id={taskId} members={members} />
         </div>
