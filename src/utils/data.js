@@ -25,19 +25,19 @@ export const initialData = {
   ],
   "tasks": [
     {
-      "id": "task-1",
+      "id": "dashboard-1#task-1",
       "dashboardId": "1",
       "title": "Update documentation",
       "assignedMembers": [
         {
           "id": 'member-4',
           "name": "Jane Doe",
-          "image": bunnyAvatar
+          "image": "http://localhost:3000/src/pages/Dashboard/img/bunny_avatar.jpeg"
         },
         {
           "id": 'member-5',
           "name": "Alice",
-          "image": bunnyAvatar
+          "image": "http://localhost:3000/src/pages/Dashboard/img/bunny_avatar.jpeg"
         },
       ],
       "tags": [
@@ -48,19 +48,19 @@ export const initialData = {
       ]
     },
     {
-      "id": "task-2",
+      "id": "dashboard-1#task-2",
       "dashboardId": "1",
       "title": "Setup husky",
       "assignedMembers": [
         {
           "id": 'member-6',
           "name": "Karen Doe ",
-          "image": bunnyAvatar
+          "image": "http://localhost:3000/src/pages/Dashboard/img/bunny_avatar.jpeg"
         },
         {
           "id": 'member-7',
           "name": "Mark",
-          "image": monkeyAdidasAvatar
+          "image": "http://localhost:3000/src/pages/Dashboard/img/monkey_adidas_avatar.jpeg"
         },
       ],
       "tags": [

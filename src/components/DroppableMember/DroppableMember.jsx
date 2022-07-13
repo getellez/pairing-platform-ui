@@ -10,7 +10,7 @@ export const DroppableMember = ({ dashboard }) => {
             {...droppableProvided.droppableProps}
             ref={droppableProvided.innerRef}
             className="members__container">
-            {
+            { dashboard?.members &&
               dashboard.members.map((member, index) => (
                 <DraggableMember key={member.id} member={member} index={index} />
               ))
