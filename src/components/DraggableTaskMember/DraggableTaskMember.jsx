@@ -6,13 +6,13 @@ export const DraggableTaskMember = ({ member, index }) => {
       {
         (draggableProvided) => (
           <div
-            className='tasks__members-container'
+            className='task__members-container'
             {...draggableProvided.draggableProps}
             ref={draggableProvided.innerRef}
             {...draggableProvided.dragHandleProps}>
               
-            <img className='tasks__members-avatar' src={member.image} alt={member.name} width={70} />
-            <div className="tasks__members-name"><small>{member.name}</small></div>
+            <img className='task__members-avatar' src={member.image} alt={member.name} width={70} />
+            <div className="task__members-name"><small>{member.name}</small></div>
           </div>
         )
       }

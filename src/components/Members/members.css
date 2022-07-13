@@ -2,13 +2,9 @@
   margin-top: 10px;
   padding: 15px;
 }
-.members ul {
-  display: flex;
-  list-style: none;
-  align-items: center;
-}
 
 .members__wrapper {
+  overflow: hidden;
   width: 100%;
   display: flex;
   align-items: center;
@@ -16,12 +12,16 @@
   border: 1px solid rgba(0,0,0,0.09);
   border-radius: 10px;
 }
+
 .members__container {
   padding: 20px 5px;
   border-radius: 10px;
   display: flex;
 }
 
+.members__container-bench {
+  width: 100%;
+}
 
 .members__avatar {
   border-radius: 50%;

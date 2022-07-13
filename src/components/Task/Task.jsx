@@ -5,21 +5,24 @@ import 'antd/lib/input/style/index.css'
 import { useState, useEffect } from 'react';
 
 export const Task = ({ taskId, members, title }) => {
-  const [taskTitle, setTaskTitle] = useState('')
 
-  const  handleOnChangeTaskTitle = ({ target }) => {
-    setTaskTitle(target.value)
+  const inputStyle = {
+    padding: 0,
+    fontWeight: 300,
+    fontFamily:'Roboto'
   }
 
   return (
     <>
     {
       taskId && (
-        <div className='tasks__column'>
-          <div className='tasks__header-container'>
-            <Input placeholder='Type a new title...' bordered={false} name='title' onChange={handleOnChangeTaskTitle} value={title} />
+        <div className='task__column'>
+          <div className='task__wrapper'>
+            <div className='task__header-container'>
+              <Input style={inputStyle} placeholder='Type a new title...' bordered={false} name='title' value={title} />
+            </div>
+            <DroppableTaskMember id={taskId} members={members} />
           </div>
-          <DroppableTaskMember id={taskId} members={members} />
         </div>
       )
     }

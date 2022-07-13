@@ -1,7 +1,6 @@
 .tasks {
-  column-gap: 2%;
   display: grid;
-  grid-template-columns: 48% 48%;
+  grid-template-columns: 50% 50%;
   justify-content: center;
   margin-top: 20px;
 }

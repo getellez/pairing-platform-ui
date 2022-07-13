@@ -1,17 +1,16 @@
 .NewTask {
-  background-color: rgba(127, 200, 248, 0.4);
-  border: 2px solid white;
-  border-radius: 10px;
-  border-style: dashed;
   box-sizing: border-box;
-  color: white;
-  cursor: pointer;
-  margin: 10px 0;
-  padding: 25px 10px;
+  padding: 10px;
 }
 
 .NewTask__header-container {
+  border-radius: 10px;
+  border: 2px dashed white;
+  background-color: rgba(127, 200, 248, 0.4);
+  color: white;
+  cursor: pointer;
   text-align: center;
+  padding: 25px;
 }
 
 .NewTask__header-title {
