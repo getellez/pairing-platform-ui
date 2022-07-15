@@ -9,13 +9,13 @@ import { useDashboard } from '../../hooks/useDashboard';
 
 export const Dashboard = () => {
   
-  const { dashboard, handleSortMembers } = useDashboard()
+  const { dashboard, handleSortMembers, addNewMember } = useDashboard()
 
   return (
     <DragDropContext onDragEnd={handleSortMembers}>
       <section className='dashboard'>
         <Controls />
-        <Members dashboard={dashboard}  />
+        <Members dashboard={dashboard} addNewMember={addNewMember} />
         <TasksList>
           { dashboard?.tasks && 
             dashboard.tasks.map(task => (

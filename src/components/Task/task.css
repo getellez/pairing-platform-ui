@@ -27,10 +27,13 @@
 
 .task__members {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .task__members-container {
   margin-right: 10px;
+  margin-bottom: 10px;
+
 }
 
 .task__members-avatar {
