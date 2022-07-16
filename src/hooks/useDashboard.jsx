@@ -22,6 +22,17 @@ export const useDashboard = () => {
     
   }
 
+  const addNewTask = () => {
+    dispatch({
+      type: 'add_task',
+      payload: {
+        "id": `task-${uuidv4()}`,
+        "title": 'New Task',
+        "assignedMembers": []
+      }
+    })
+  }
+
   const addNewMember = () => {
     dispatch({
       type: 'add_member',
@@ -65,6 +76,7 @@ export const useDashboard = () => {
   return {
     dashboard,
     handleSortMembers,
-    addNewMember
+    addNewMember,
+    addNewTask
   }
 }

@@ -11,6 +11,9 @@ export const dashboardReducer = (state, action) => {
 
     case 'move_team_member':
       return action.payload
+
+    case 'add_task':
+      return {...state, tasks: [...state.tasks, action.payload]}
     }
   return state
 
