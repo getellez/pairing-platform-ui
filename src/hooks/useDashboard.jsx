@@ -45,6 +45,23 @@ export const useDashboard = () => {
     getDashboard()
   }, [])
 
+  useEffect(() => {
+    const updateDashboard = async () => {
+      const result = fetch('http://localhost:3001/api/v1/dashboards/1', {
+        method: "POST",
+        body: JSON.stringify(dashboard),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+      const data = await (await result).json()
+      console.log('data :>> ', data);
+    }
+    updateDashboard()
+  }, [dashboard])
+  
+
+
   return {
     dashboard,
     handleSortMembers,
