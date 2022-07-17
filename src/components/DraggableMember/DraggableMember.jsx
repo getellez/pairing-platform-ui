@@ -1,3 +1,4 @@
+import { Input } from 'antd'
 import PropTypes from 'prop-types'
 import { Draggable } from "react-beautiful-dnd"
 import './DraggableMember.css'
@@ -11,13 +12,17 @@ export const DraggableMember = ({ member, index }) => {
             {...draggableProvided.draggableProps}
             ref={draggableProvided.innerRef}
             {...draggableProvided.dragHandleProps}
+            className='draggable__member-container'
           >
             <img
-              className='members__avatar'
+              className='draggable__member-avatar'
               src={member.image}
               alt=""
               width={100} />
-            <div className='members__name'><small>{member.name}</small></div>
+            <div className='draggable__member-name-container'>
+              <Input htmlSize={10} className="draggable__member-name-input" bordered={false} name='title' value={member.name} />
+            </div>
+
           </div>
         )
       }
