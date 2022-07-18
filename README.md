@@ -6,4 +6,7 @@ Techonologies and methodologies used on this project:
 
 * HTML
 * CSS (Grid, flexbox, BEM)
+* ANT Design Framework
 * React
+* React Hooks
+* React Context
