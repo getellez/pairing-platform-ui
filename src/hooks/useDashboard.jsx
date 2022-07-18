@@ -66,12 +66,10 @@ export const useDashboard = () => {
         }
       })
       const data = await (await result).json()
-      console.log('data :>> ', data);
     }
     updateDashboard()
   }, [dashboard])
   
-
 
   return {
     dashboard,

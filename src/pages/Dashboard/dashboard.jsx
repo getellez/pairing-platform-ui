@@ -5,18 +5,20 @@ import { TasksList } from '../../components/TasksList/TasksList';
 
 import './Dashboard.css'
 import { Task } from '../../components/Task/Task';
-import { useDashboard } from '../../hooks/useDashboard';
+import { useContext } from 'react';
+import { DashboardContext } from '../../context/DashboardContext';
 
 export const Dashboard = () => {
   
-  const { dashboard, handleSortMembers, addNewMember, addNewTask } = useDashboard()
+  const { dashboardData } = useContext(DashboardContext)
+  const { dashboard, handleSortMembers } = dashboardData;
 
   return (
     <DragDropContext onDragEnd={handleSortMembers}>
       <section className='dashboard'>
         <Controls />
-        <Members dashboard={dashboard} addNewMember={addNewMember} />
-        <TasksList handleNewTask={addNewTask}>
+        <Members />
+        <TasksList>
           { dashboard?.tasks && 
             dashboard.tasks.map(task => (
                 <Task key={task.id} taskId={task.id} title={task.title} members={task.assignedMembers} />

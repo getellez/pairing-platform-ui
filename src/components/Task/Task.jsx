@@ -1,8 +1,7 @@
-import './Task.css'
-import { DroppableTaskMember } from '../DroppableTaskMember/DroppableTaskMember';
 import { Input } from 'antd'
+import { DroppableTaskMember } from '../DroppableTaskMember/DroppableTaskMember';
 import 'antd/lib/input/style/index.css'
-import { useState, useEffect } from 'react';
+import './Task.css'
 
 export const Task = ({ taskId, members, title }) => {
 

@@ -1,8 +1,14 @@
 import './NewTask.css'
+import { useContext } from 'react';
+import { DashboardContext } from '../../context/DashboardContext';
 
-export const NewTask = ({ handleNewTask }) => {
+export const NewTask = () => {
+  
+  const { dashboardData } = useContext(DashboardContext)
+  const { addNewTask } = dashboardData;
+
   return (
-    <div className='NewTask' onClick={handleNewTask}>
+    <div className='NewTask' onClick={addNewTask}>
       <div className='NewTask__header-container'>
       <img src="https://img.icons8.com/ios-filled/50/FFFFFF/add--v1.png"/>
       <p className='NewTask__header-title'>Add a new task</p>

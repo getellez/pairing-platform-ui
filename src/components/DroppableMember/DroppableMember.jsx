@@ -1,7 +1,13 @@
 import { Droppable } from "react-beautiful-dnd"
+import { useContext } from 'react';
 import { DraggableMember } from "../DraggableMember/DraggableMember"
+import { DashboardContext } from '../../context/DashboardContext';
 
-export const DroppableMember = ({ dashboard }) => {
+export const DroppableMember = () => {
+  
+  const { dashboardData } = useContext(DashboardContext)
+  const { dashboard } = dashboardData;
+
   return (
     <Droppable droppableId='members' direction='horizontal'>
       {
