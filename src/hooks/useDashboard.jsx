@@ -44,6 +44,16 @@ export const useDashboard = () => {
     })
   }
 
+  const updateTaskTitle = (taskId, taskTitle) => {
+    dispatch({
+      type: 'update_task_title',
+      payload: {
+        taskId,
+        taskTitle
+      }
+    })
+  }
+
   useEffect(() => {
     const getDashboard = async () => {
       const result = await fetch('http://localhost:3001/api/v1/dashboards/1')
@@ -75,6 +85,7 @@ export const useDashboard = () => {
     dashboard,
     handleSortMembers,
     addNewMember,
-    addNewTask
+    addNewTask,
+    updateTaskTitle
   }
 }
