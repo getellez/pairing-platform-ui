@@ -2,9 +2,10 @@ import { useEffect, useReducer } from 'react';
 import { sortMembers } from '../utils/sortMembers';
 import { v4 as uuidv4 } from 'uuid';
 import { dashboardReducer } from '../reducers/dashboardReducer';
-
+import { sendApiRequest, getDashboardName, getTokenFromLocalStorage } from '../utils/client';
 
 export const useDashboard = () => {
+
   const [dashboard, dispatch] = useReducer(dashboardReducer,{})
   
   const handleSortMembers = ({ source, destination }) => {
@@ -56,8 +57,10 @@ export const useDashboard = () => {
 
   useEffect(() => {
     const getDashboard = async () => {
-      const result = await fetch('http://localhost:3001/api/v1/dashboards/1')
-      const data = await result.json()
+      const dashboardName = getDashboardName()
+      const url = `http://localhost:3001/api/v1/dashboards/${dashboardName}`
+      const authTokenHeader = getTokenFromLocalStorage()
+      const data = await sendApiRequest.get(url, authTokenHeader)
       dispatch({
         type: 'initial_state',
         payload: data
@@ -68,17 +71,18 @@ export const useDashboard = () => {
 
   useEffect(() => {
     const updateDashboard = async () => {
-      const result = fetch('http://localhost:3001/api/v1/dashboards/1', {
+      const dashboardName = getDashboardName()
+      fetch(`http://localhost:3001/api/v1/dashboards/${dashboardName}`, {
         method: "POST",
         body: JSON.stringify(dashboard),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         }
       })
-      const data = await (await result).json()
     }
     updateDashboard()
   }, [dashboard])
+  
   
 
   return {

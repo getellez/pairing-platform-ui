@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path={urls.homePage} element={<Home />} />
         <Route path={urls.loginPage} element={<Login />} />
-        <Route path={urls.dashboardPage} element={<Dashboard />} />
+        <Route path="dashboards/:dashboardName" element={<Dashboard />} />
       </Routes>
     </DashboardContextProvider>
   )

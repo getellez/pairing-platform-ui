@@ -1,5 +1,5 @@
 export const urls = {
   homePage: '/',
-  dashboardPage: '/dashboard',
+  dashboardPage: '/dashboards/:dashboardName',
   loginPage: '/login'
 }

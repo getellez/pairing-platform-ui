@@ -1,46 +1,48 @@
 import React, { useState } from 'react'
 import './Login.css'
+import { sendApiRequest } from '../../utils/client';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   
   const [formData, setFormData] = useState({ 
-    dashboard_name: '',
+    dashboardName: '',
     password: '',
     email: 'gertellezv@gmail.com'
   })
-
+  const navigate = useNavigate()
+  
   const handleChange = ({ target }) => {
     setFormData({
       ...formData, 
       [target.name]: target.value
     })
   }
-  const handleSubmit = async (e) => {
+  
+  const handleLogin = async (e) => {
     e.preventDefault()
-    console.log('formData :>> ', formData);
-    const login = await fetch('http://localhost:3001/api/v1/auth/signin', {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-    const data = await login.json()
-    console.log('data :>> ', data);
-
+    const url = 'http://localhost:3001/api/v1/auth/signin';
+    const headers = {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+    const token = await sendApiRequest.post(url, formData, headers)
+    localStorage.setItem('pairing-token', JSON.stringify(token))
+    navigate(`/dashboards/${formData.dashboardName}`)
+    window.location.reload()
   }
+
   return (
     <section className="Login">
       <div className="Login__container">
         
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <div className='Login__input-container'>
             <input 
             onChange={handleChange} 
             className='Login__input' 
             placeholder='Dashboard name' 
             type="text" 
-            name="dashboard_name" />
+            name="dashboardName" />
           </div>
 
           <div className='Login__input-container'>
@@ -52,7 +54,7 @@ export const Login = () => {
             name="password" />
           </div>
           <div className='Login__input-container'>
-            <input className='Login__button' type="submit" value="Login" />
+            <input className='Login__button' type="submit" value="LOGIN" />
           </div>
         </form>
 

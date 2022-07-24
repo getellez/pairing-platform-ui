@@ -7,6 +7,7 @@ import './Dashboard.css'
 import { Task } from '../../components/Task/Task';
 import { useContext } from 'react';
 import { DashboardContext } from '../../context/DashboardContext';
+import { useParams } from 'react-router-dom';
 
 export const Dashboard = () => {
   
