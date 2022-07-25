@@ -55,6 +55,17 @@ export const useDashboard = () => {
     })
   }
 
+  const updateTaskMemberName = (taskId, memberId, newMemberName) => {
+    dispatch({
+      type: 'update_member_name',
+      payload: {
+        taskId,
+        memberId,
+        newMemberName
+      }
+    })
+  }
+
   useEffect(() => {
     const getDashboard = async () => {
       const tokenPayload = getTokenPayload()
@@ -86,13 +97,12 @@ export const useDashboard = () => {
     updateDashboard()
   }, [dashboard])
   
-  
-
   return {
     dashboard,
     handleSortMembers,
     addNewMember,
     addNewTask,
-    updateTaskTitle
+    updateTaskTitle,
+    updateTaskMemberName
   }
 }

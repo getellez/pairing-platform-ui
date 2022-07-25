@@ -33,7 +33,7 @@
 .task__members-container {
   margin-right: 10px;
   margin-bottom: 10px;
-
+  text-align: center;
 }
 
 .task__members-avatar {
@@ -43,6 +43,7 @@
 }
 
 .task__members-name {
+  width: 100%;
   text-align: center;
   font-weight: 300;
 }

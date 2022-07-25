@@ -12,7 +12,7 @@ export const DroppableTaskMember = ({ id, members }) => {
             className='task__members'>
             { members && 
               members.map((member, index) => (
-                <DraggableTaskMember key={member.id} member={member} index={index} />
+                <DraggableTaskMember key={member.id} member={member} index={index} taskId={id} />
               ))
             }
             {droppableProvided.placeholder}
