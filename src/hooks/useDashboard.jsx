@@ -57,9 +57,19 @@ export const useDashboard = () => {
 
   const updateTaskMemberName = (taskId, memberId, newMemberName) => {
     dispatch({
-      type: 'update_member_name',
+      type: 'update_task_member_name',
       payload: {
         taskId,
+        memberId,
+        newMemberName
+      }
+    })
+  }
+
+  const updateBenchMemberName = (memberId, newMemberName) => {
+    dispatch({
+      type: 'update_bench_member_name',
+      payload: {
         memberId,
         newMemberName
       }
@@ -103,6 +113,7 @@ export const useDashboard = () => {
     addNewMember,
     addNewTask,
     updateTaskTitle,
-    updateTaskMemberName
+    updateTaskMemberName,
+    updateBenchMemberName
   }
 }

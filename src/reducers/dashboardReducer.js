@@ -13,7 +13,7 @@ export const dashboardReducer = (state, action) => {
     case 'add_task':
       return {...state, tasks: [...state.tasks, action.payload]}
     
-    case 'update_member_name':
+    case 'update_task_member_name':
       const customState = { ...state };
       for (let i = 0; i < customState.tasks.length; i++) {
         const task = customState.tasks[i];
@@ -23,6 +23,17 @@ export const dashboardReducer = (state, action) => {
         }
       }
       return customState
+    case 'update_bench_member_name':
+      const newCustomState = { ...state }
+      for (let i = 0; i < newCustomState.members.length; i++) {
+        const benchMember = newCustomState.members[i];
+        if (benchMember.id === action.payload.memberId) {
+          const memberIndex = newCustomState.members.findIndex(member => member.id === action.payload.memberId)
+          console.log('memberIndex :>> ', memberIndex);
+          newCustomState.members[memberIndex].name = action.payload.newMemberName
+        }
+      }
+      return newCustomState
 
     case 'update_task_title':
       const newState = {...state}
