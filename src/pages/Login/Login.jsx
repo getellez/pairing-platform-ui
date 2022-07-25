@@ -21,7 +21,7 @@ export const Login = () => {
   
   const handleLogin = async (e) => {
     e.preventDefault()
-    const url = 'http://localhost:3001/api/v1/auth/signin';
+    const url = '/api/v1/auth/signin';
     const headers = {
       "Content-type": "application/json; charset=UTF-8"
     }

@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react';
 import { sortMembers } from '../utils/sortMembers';
 import { v4 as uuidv4 } from 'uuid';
 import { dashboardReducer } from '../reducers/dashboardReducer';
-import { sendApiRequest, getDashboardName, getTokenFromLocalStorage } from '../utils/client';
+import { sendApiRequest, getDashboardName, getTokenPayload, getTokenFromLocalStorage } from '../utils/client';
 
 export const useDashboard = () => {
 
@@ -57,14 +57,19 @@ export const useDashboard = () => {
 
   useEffect(() => {
     const getDashboard = async () => {
-      const dashboardName = getDashboardName()
-      const url = `http://localhost:3001/api/v1/dashboards/${dashboardName}`
-      const authTokenHeader = getTokenFromLocalStorage()
-      const data = await sendApiRequest.get(url, authTokenHeader)
-      dispatch({
-        type: 'initial_state',
-        payload: data
-      })
+      const tokenPayload = getTokenPayload()
+      if (tokenPayload?.dashboardName) {
+        const dashboardName = tokenPayload.dashboardName
+        const endpoint = `/api/v1/dashboards/${dashboardName}`
+        const authTokenHeader = getTokenFromLocalStorage()
+        if (authTokenHeader) {
+          const data = await sendApiRequest.get(endpoint, authTokenHeader)
+          dispatch({
+            type: 'initial_state',
+            payload: data
+          })
+        }
+      }
     }
     getDashboard()
   }, [])
@@ -72,13 +77,11 @@ export const useDashboard = () => {
   useEffect(() => {
     const updateDashboard = async () => {
       const dashboardName = getDashboardName()
-      fetch(`http://localhost:3001/api/v1/dashboards/${dashboardName}`, {
-        method: "POST",
-        body: JSON.stringify(dashboard),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      })
+      const endpoint = `/api/v1/dashboards/${dashboardName}`
+      const headers = {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+      await sendApiRequest.post(endpoint, dashboard, headers)
     }
     updateDashboard()
   }, [dashboard])
