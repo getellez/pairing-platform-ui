@@ -4,14 +4,13 @@
 .Login__container {
   /* border: 1px solid rgba(0, 0, 0, 0.2); */
   width: 30%;
-  padding: 100px;
-  
+  /* padding: 100px; */
   position: absolute;
   text-align: center;
   margin: auto;
   left: 0;
   right: 0;
-  transform: translate(0%, 50%);
+  transform: translate(0%, 150%);
 }
 
 .Login__input-container {
@@ -36,4 +35,12 @@
   padding: 10px 20px;
   width: 100%;
   cursor: pointer;
+}
+
+.error-message {
+  margin-top: 50px;
+  color: white;
+  padding: 10px;
+  background-color: rgb(247, 129, 129);
+  border-radius: 10px;
 }

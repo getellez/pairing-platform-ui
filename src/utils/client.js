@@ -20,7 +20,10 @@ export const sendApiRequest = {
           body: JSON.stringify(body),
         })
     const data = await response.json()
-    return data
+    return {
+      statusCode: response.status,
+      ...data
+    }
   }
 }
 

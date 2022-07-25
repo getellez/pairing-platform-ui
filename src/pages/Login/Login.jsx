@@ -4,7 +4,7 @@ import { sendApiRequest } from '../../utils/client';
 import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
-  
+  const [errorMessage, setErrorMessage] = useState('')
   const [formData, setFormData] = useState({ 
     dashboardName: '',
     password: '',
@@ -26,9 +26,15 @@ export const Login = () => {
       "Content-type": "application/json; charset=UTF-8"
     }
     const token = await sendApiRequest.post(url, formData, headers)
-    localStorage.setItem('pairing-token', JSON.stringify(token))
-    navigate(`/dashboards/${formData.dashboardName}`)
-    window.location.reload()
+    if (token.statusCode !== 200) {
+      setErrorMessage(token.message)
+    } else {
+      setErrorMessage('')
+      localStorage.setItem('pairing-token', JSON.stringify(token))
+      navigate(`/dashboards/${formData.dashboardName}`)
+      window.location.reload()
+    }
+    
   }
 
   return (
@@ -57,6 +63,13 @@ export const Login = () => {
             <input className='Login__button' type="submit" value="LOGIN" />
           </div>
         </form>
+        {
+          errorMessage && (
+            <small className='error-message'>
+              { errorMessage }
+            </small>
+          )
+        }
 
       </div>
     </section>
