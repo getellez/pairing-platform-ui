@@ -76,6 +76,15 @@ export const useDashboard = () => {
     })
   }
 
+  const removeTask = (taskId) => {
+    dispatch({
+      type: 'remove_task',
+      payload: {
+        taskId
+      }
+    })
+  }
+
   useEffect(() => {
     const getDashboard = async () => {
       const tokenPayload = getTokenPayload()
@@ -114,6 +123,7 @@ export const useDashboard = () => {
     addNewTask,
     updateTaskTitle,
     updateTaskMemberName,
-    updateBenchMemberName
+    updateBenchMemberName,
+    removeTask,
   }
 }

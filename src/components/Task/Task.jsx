@@ -12,7 +12,7 @@ export const Task = ({ taskId, members, title }) => {
   const [taskTitle, setTaskTitle] = useState(title)
 
   const { dashboardData } = useContext(DashboardContext)
-  const { updateTaskTitle } = dashboardData;
+  const { updateTaskTitle, removeTask } = dashboardData;
 
   const handleOnChange = (e) => {
     setTaskTitle(e.target.value)
@@ -24,10 +24,15 @@ export const Task = ({ taskId, members, title }) => {
     }
   }
 
+  const handleRemoveTask = () => {
+    removeTask(taskId)
+  }
+
   const inputStyle = {
     padding: 0,
     fontWeight: 300,
-    fontFamily:'Roboto'
+    fontFamily:'Roboto',
+    width: '50%'
   }
 
   return (
@@ -36,9 +41,15 @@ export const Task = ({ taskId, members, title }) => {
       taskId && (
         <div className='task__column'>
           <div className='task__wrapper'>
+            
             <div className='task__header-container'>
-              <Input style={inputStyle} placeholder='Type a new title...' bordered={false} value={taskTitle} onChange={handleOnChange} onKeyDown={handlePressEnter} />
+
+              <Input style={inputStyle} htmlSize={100} placeholder='Type a new title...' bordered={false} value={taskTitle} onChange={handleOnChange} onKeyDown={handlePressEnter} />
+              <p className='task__header-close' onClick={handleRemoveTask}>
+                <small>X</small>
+              </p>
             </div>
+
             <DroppableTaskMember id={taskId} members={members} />
           </div>
         </div>
