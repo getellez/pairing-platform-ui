@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import { DashboardContextProvider } from './components/DashboardContext/DashboardContext';
 import { Login } from './pages/Login/Login';
 import { urls } from './config/urls';
+import { Signup } from './pages/Signup/Signup';
 
 import './App.css'
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path={urls.homePage} element={<Home />} />
         <Route path={urls.loginPage} element={<Login />} />
+        <Route path={urls.signupPage} element={<Signup />} />
         <Route path="dashboards/:dashboardName" element={<Dashboard />} />
       </Routes>
     </DashboardContextProvider>

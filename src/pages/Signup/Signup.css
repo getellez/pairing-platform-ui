@@ -1,0 +1,42 @@
+.Signup {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 92vh;
+  align-items: center;
+}
+
+.Signup__container-left {
+  /* text-align: center; */
+  background-color: white;
+  height: 100%;
+  display: flex;
+}
+
+.Signup__form {
+  width: 50%;
+  margin: auto;
+}
+
+.Signup__form-button {
+  padding: 10px;
+  background-color: #7FC8F8;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.Signup__form-label {
+  font-weight: 300;
+}
+
+.Signup__container-right {
+  padding: 100px;
+}
+
+.Signup__form-error {
+  margin-top: 10px;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  background-color: rgb(247, 129, 129);
+  border-radius: 10px;
+}
