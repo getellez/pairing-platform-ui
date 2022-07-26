@@ -12,11 +12,7 @@ export const DraggableMember = ({ member, index }) => {
   
   const handleChange = ({ target }) => {
     setMemberName(target.value)
-  }
-  
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    updateBenchMemberName(member.id, memberName)
+    updateBenchMemberName(member.id, target.value)
   }
   
   const inputStyle = {
@@ -40,11 +36,19 @@ export const DraggableMember = ({ member, index }) => {
               src={member.image}
               alt={memberName}
               width={100} />
-            {/* <div className='draggable__member-name-container'> */}
-            <form onSubmit={handleSubmit}>
-              <Input style={inputStyle} htmlSize={10} className="draggable__member-name-input" bordered={false} onChange={handleChange} value={memberName} />
-            </form>
-            {/* </div> */}
+            
+            <div>
+              <Input 
+              autoFocus={true}
+              style={inputStyle}
+              htmlSize={10}
+              className="draggable__member-name-input"
+              bordered={false}
+              onChange={handleChange}
+              value={memberName}
+              placeholder="Enter a new name"
+              />
+            </div>
 
           </div>
         )

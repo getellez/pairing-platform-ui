@@ -32,7 +32,7 @@ export const dashboardReducer = (state, action) => {
           newState.members[memberIndex].name = action.payload.newMemberName
         }
       }
-      return newCustomState
+      return newState
 
     case 'update_task_title':
       const newTasks = newState.tasks.map(task => {

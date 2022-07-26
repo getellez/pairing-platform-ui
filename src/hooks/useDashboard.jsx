@@ -28,7 +28,7 @@ export const useDashboard = () => {
       type: 'add_task',
       payload: {
         "id": `task-${uuidv4()}`,
-        "title": 'New Task',
+        "title": '',
         "assignedMembers": []
       }
     })
@@ -39,8 +39,8 @@ export const useDashboard = () => {
       type: 'add_member',
       payload: {
         "id": `member-${uuidv4()}`,
-        "name": 'Anonymous',
-        "image": 'https://uploads-ssl.webflow.com/5ead65b4cd1146b85071bfdf/608ff2a12bc39c3ff457ae36_Bored%20Ape%208622-%20Image%202.png'
+        "name": "",
+        "image": "https://uploads-ssl.webflow.com/5ead65b4cd1146b85071bfdf/608ff2a12bc39c3ff457ae36_Bored%20Ape%208622-%20Image%202.png"
       }
     })
   }

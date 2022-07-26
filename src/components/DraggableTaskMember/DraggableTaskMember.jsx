@@ -12,13 +12,9 @@ export const DraggableTaskMember = ({ member, index, taskId }) => {
   
   const handleOnChange = (e) => {
     setMemberName(e.target.value)
+    updateTaskMemberName(taskId, member.id, e.target.value)
   }
   
-  const handlePressEnter = (e) => {
-    if (e.key === 'Enter') {
-      updateTaskMemberName(taskId, member.id, memberName)
-    }
-  }
   const inputStyle = {
     padding: 0,
     fontWeight: 300,
@@ -37,7 +33,14 @@ export const DraggableTaskMember = ({ member, index, taskId }) => {
               
             <img className='task__members-avatar' src={member.image} alt={member.name} width={70} />
             <div className="task__members-name">
-              <Input style={inputStyle} htmlSize={10} placeholder='Type a new name...' bordered={false} value={memberName} onChange={handleOnChange} onKeyDown={handlePressEnter} />
+              <Input 
+              style={inputStyle} 
+              htmlSize={10} 
+              placeholder='Type a new name'
+              bordered={false}
+              value={memberName} 
+              onChange={handleOnChange}
+              />
             </div>
           </div>
         )
