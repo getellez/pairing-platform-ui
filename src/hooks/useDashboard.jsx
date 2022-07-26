@@ -88,7 +88,7 @@ export const useDashboard = () => {
   useEffect(() => {
     const getDashboard = async () => {
       const tokenPayload = getTokenPayload()
-      if (tokenPayload?.dashboardName) {
+      if (tokenPayload) {
         const dashboardName = tokenPayload.dashboardName
         const endpoint = `/api/v1/dashboards/${dashboardName}`
         const authTokenHeader = getTokenFromLocalStorage()

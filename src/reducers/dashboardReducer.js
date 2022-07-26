@@ -29,7 +29,6 @@ export const dashboardReducer = (state, action) => {
         const benchMember = newState.members[i];
         if (benchMember.id === action.payload.memberId) {
           const memberIndex = newState.members.findIndex(member => member.id === action.payload.memberId)
-          console.log('memberIndex :>> ', memberIndex);
           newState.members[memberIndex].name = action.payload.newMemberName
         }
       }

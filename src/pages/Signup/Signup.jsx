@@ -26,7 +26,6 @@ export const Signup = () => {
       "Content-type": "application/json; charset=UTF-8"
     }
     const response = await sendApiRequest.post(endpoint, signupForm, headers)
-    console.log('response :>> ', response);
     if (response.statusCode === 201) {
       navigate(urls.loginPage)
     } else {

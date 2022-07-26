@@ -54,7 +54,7 @@ export const getTokenFromLocalStorage = () => {
   let token;
   let tokenInLocalStorage = JSON.parse(localStorage.getItem('pairing-token'))
   if (tokenInLocalStorage) {
-    token = tokenInLocalStorage.token
+    token = tokenInLocalStorage
   }
   if (token) {
     return {

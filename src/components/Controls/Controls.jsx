@@ -13,14 +13,8 @@ export const Controls = () => {
 
   return (
     <section className='control'>
-        {/* <div className='control__action'>
-          <p>Pair</p>
-        </div>
-        <div className='control__action'>
-          <p>Save</p>
-        </div> */}
-        <div className='control__action'>
-          <p onClick={handleLogout}>Logout</p>
+        <div className='control__action' onClick={handleLogout}>
+          <p>Logout</p>
         </div>
     </section>
   )

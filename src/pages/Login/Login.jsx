@@ -7,8 +7,7 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [formData, setFormData] = useState({ 
     dashboardName: '',
-    password: '',
-    email: 'gertellezv@gmail.com'
+    password: ''
   })
   const navigate = useNavigate()
   
@@ -25,12 +24,12 @@ export const Login = () => {
     const headers = {
       "Content-type": "application/json; charset=UTF-8"
     }
-    const token = await sendApiRequest.post(url, formData, headers)
-    if (token.statusCode !== 200) {
-      setErrorMessage(token.message)
+    const login = await sendApiRequest.post(url, formData, headers)
+    if (login.statusCode !== 200) {
+      setErrorMessage(login.message)
     } else {
       setErrorMessage('')
-      localStorage.setItem('pairing-token', JSON.stringify(token))
+      localStorage.setItem('pairing-token', JSON.stringify(login.token))
       navigate(`/dashboards/${formData.dashboardName}`)
       window.location.reload()
     }
@@ -48,7 +47,9 @@ export const Login = () => {
             className='Login__input' 
             placeholder='Dashboard name' 
             type="text" 
-            name="dashboardName" />
+            name="dashboardName"
+            value={formData.dashboardName}
+            />
           </div>
 
           <div className='Login__input-container'>
@@ -57,7 +58,10 @@ export const Login = () => {
             className='Login__input' 
             placeholder='Password' 
             type="password" 
-            name="password" />
+            name="password"
+            value={formData.password}
+
+            />
           </div>
           <div className='Login__input-container'>
             <input className='Login__button' type="submit" value="LOGIN" />
