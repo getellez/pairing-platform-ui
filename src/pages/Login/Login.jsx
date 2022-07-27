@@ -29,7 +29,7 @@ export const Login = () => {
       setErrorMessage(login.message)
     } else {
       setErrorMessage('')
-      localStorage.setItem('pairing-token', JSON.stringify(login.token))
+      localStorage.setItem('pairing-token', JSON.stringify(login.data.token))
       navigate(`/dashboards/${formData.dashboardName}`)
       window.location.reload()
     }

@@ -2,10 +2,13 @@ import { useEffect, useReducer } from 'react';
 import { sortMembers } from '../utils/sortMembers';
 import { v4 as uuidv4 } from 'uuid';
 import { dashboardReducer } from '../reducers/dashboardReducer';
-import { sendApiRequest, getDashboardName, getTokenPayload, getTokenFromLocalStorage } from '../utils/client';
+import { sendApiRequest, getDashboardName, getTokenPayload, getTokenHeader } from '../utils/client';
+import { useNavigate } from 'react-router-dom';
+import { urls } from '../config/urls';
 
 export const useDashboard = () => {
-
+  
+  const navigate = useNavigate()
   const [dashboard, dispatch] = useReducer(dashboardReducer,{})
   
   const handleSortMembers = ({ source, destination }) => {
@@ -110,13 +113,20 @@ export const useDashboard = () => {
       if (tokenPayload) {
         const dashboardName = tokenPayload.dashboardName
         const endpoint = `/api/v1/dashboards/${dashboardName}`
-        const authTokenHeader = getTokenFromLocalStorage()
+        const authTokenHeader = getTokenHeader()
         if (authTokenHeader) {
-          const data = await sendApiRequest.get(endpoint, authTokenHeader)
-          dispatch({
-            type: 'initial_state',
-            payload: data
-          })
+          const dashboard = await sendApiRequest.get(endpoint, authTokenHeader)
+          if (dashboard.statusCode === 200) {
+            dispatch({
+              type: 'initial_state',
+              payload: dashboard.data
+            })
+          } else {
+            navigate(urls.loginPage)
+            localStorage.removeItem('paring-token')
+          }
+        } else {
+          navigate(urls.loginPage)
         }
       }
     }
@@ -126,11 +136,18 @@ export const useDashboard = () => {
   useEffect(() => {
     const updateDashboard = async () => {
       const dashboardName = getDashboardName()
+      if (!dashboardName) {
+        return 
+      }
       const endpoint = `/api/v1/dashboards/${dashboardName}`
       const headers = {
-        "Content-type": "application/json; charset=UTF-8"
+        "Content-type": "application/json; charset=UTF-8",
+        ...getTokenHeader()
       }
-      await sendApiRequest.post(endpoint, dashboard, headers)
+      const response = await sendApiRequest.post(endpoint, dashboard, headers)
+      if (response.statusCode !== 201) {
+        navigate(urls.loginPage)
+      }
     }
     updateDashboard()
   }, [dashboard])

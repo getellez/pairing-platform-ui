@@ -4,25 +4,36 @@ const BASE_URL = import.meta.env.VITE_API_URL
 
 export const sendApiRequest = {
   get: async (endpoint, headers) => {
+    let data = null;
     const url = `${BASE_URL}${endpoint}`
     const response = await fetch(url, {
-          headers,
-          method: 'GET'
-        })
-    const data = await response.json()
-    return data
+      headers,
+      method: 'GET'
+    })
+    if (response.status === 200) {
+      data = await response.json()
+    } 
+    return {
+      statusCode: response.status,
+      data
+    }
   },
   post: async (endpoint, body={}, headers={}) => {
+    let data = null;
     const url = `${BASE_URL}${endpoint}`
     const response = await fetch(url, {
           headers,
           method: 'POST',
           body: JSON.stringify(body),
         })
-    const data = await response.json()
+    
+    if (response.status === 200 || response.status === 201 ) {
+      data = await response.json()
+    }
+
     return {
       statusCode: response.status,
-      ...data
+      data
     }
   }
 }
@@ -50,16 +61,19 @@ export const getDashboardName = () => {
   return null
 }
 
-export const getTokenFromLocalStorage = () => {
-  let token;
+export const getTokenHeader = () => {
+  let token = null;
   let tokenInLocalStorage = JSON.parse(localStorage.getItem('pairing-token'))
+  
   if (tokenInLocalStorage) {
     token = tokenInLocalStorage
   }
+
   if (token) {
     return {
       'Authorization': `Bearer ${token}`
     }
   }
-  return {}
+
+  return token
 }
