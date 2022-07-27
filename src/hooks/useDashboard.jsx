@@ -85,6 +85,25 @@ export const useDashboard = () => {
     })
   }
 
+  const removeBenchMember = (memberId) => {
+    dispatch({
+      type: 'remove_bench_member',
+      payload: {
+        memberId
+      }
+    })
+  }
+
+  const removeTaskMember = (taskId, memberId) => {
+    dispatch({
+      type: 'remove_task_member',
+      payload: {
+        taskId,
+        memberId
+      }
+    })
+  }
+
   useEffect(() => {
     const getDashboard = async () => {
       const tokenPayload = getTokenPayload()
@@ -125,5 +144,7 @@ export const useDashboard = () => {
     updateTaskMemberName,
     updateBenchMemberName,
     removeTask,
+    removeBenchMember,
+    removeTaskMember
   }
 }

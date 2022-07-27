@@ -7,7 +7,7 @@ import './DraggableMember.css'
 
 export const DraggableMember = ({ member, index }) => {
   const { dashboardData } = useContext(DashboardContext)
-  const { updateBenchMemberName } = dashboardData;
+  const { updateBenchMemberName, removeBenchMember } = dashboardData;
   const [memberName, setMemberName] = useState(member.name)
   
   const handleChange = ({ target }) => {
@@ -16,6 +16,7 @@ export const DraggableMember = ({ member, index }) => {
   }
   
   const inputStyle = {
+    margin: 0,
     padding: 0,
     fontWeight: 300,
     fontFamily:'Roboto'
@@ -42,12 +43,16 @@ export const DraggableMember = ({ member, index }) => {
               autoFocus={true}
               style={inputStyle}
               htmlSize={10}
+              maxLength={10}
               className="draggable__member-name-input"
               bordered={false}
               onChange={handleChange}
               value={memberName}
               placeholder="Enter a new name"
               />
+            </div>
+            <div className='draggable__member-remove' onClick={() => removeBenchMember(member.id)}>
+              <small>x</small>
             </div>
 
           </div>

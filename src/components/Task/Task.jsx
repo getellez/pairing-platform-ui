@@ -5,7 +5,7 @@ import { DroppableTaskMember } from '../DroppableTaskMember/DroppableTaskMember'
 import { DashboardContext } from '../../context/DashboardContext';
 
 import 'antd/lib/input/style/index.css'
-import './Task.css'
+import './task.css'
 
 export const Task = ({ taskId, members, title }) => {
 
@@ -52,7 +52,17 @@ export const Task = ({ taskId, members, title }) => {
             
             <div className='task__header-container'>
 
-              <Input ref={inputRef} autoFocus={true} style={inputStyle} htmlSize={100} placeholder="¿What's the name of this task?" bordered={false} value={taskTitle} onChange={handleOnChange} />
+              <Input 
+              ref={inputRef}
+              autoFocus={true}
+              style={inputStyle}
+              htmlSize={50}
+              maxLength={50}
+              placeholder="¿What's the name of this task?"
+              bordered={false}
+              value={taskTitle}
+              onChange={handleOnChange}
+              />
               <p className='task__header-close' onClick={handleRemoveTask}>
                 <small>X</small>
               </p>

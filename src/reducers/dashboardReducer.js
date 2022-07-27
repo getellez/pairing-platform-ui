@@ -50,6 +50,15 @@ export const dashboardReducer = (state, action) => {
       newState.members = [...newState.members, ...assignedMembers]
       newState.tasks.splice(taskIndex, 1)
       return newState
+    case 'remove_bench_member':
+      const memberIndex = newState.members.findIndex(member => member.id === action.payload.memberId)
+      newState.members.splice(memberIndex, 1)
+      return newState
+    case 'remove_task_member':
+      const taskIdx = newState.tasks.findIndex(task => task.id === action.payload.taskId)
+      const memberIdx = newState.tasks[taskIdx].assignedMembers.findIndex(member => member.id === action.payload.memberId)
+      newState.tasks[taskIdx].assignedMembers.splice(memberIdx, 1)
+      return newState
     }
 
   return state

@@ -2,7 +2,6 @@ import { DroppableMember } from '../DroppableMember/DroppableMember';
 import addMemberAvatarUrl from '../../pages/Dashboard/img/add_avatar.jpg';
 import { useContext } from 'react';
 import { DashboardContext } from '../../context/DashboardContext';
-
 import './members.css'
 
 export const Members = () => {
@@ -12,8 +11,8 @@ export const Members = () => {
   return (
       <section className='members'>
         <p className='dasboard__title'>Team members</p>
-        <div className="members__wrapper">
-          <div className="members__container">
+        <div className="members__container">
+          <div className="members__container-add">
             <img 
             className='members__avatar members__new-avatar' 
             onClick={addNewMember}

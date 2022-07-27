@@ -3,32 +3,44 @@
   padding: 15px;
 }
 
-.members__wrapper {
-  overflow: hidden;
-  width: 100%;
-  display: flex;
+.members__container {
   align-items: center;
   background-color: white;
   border: 1px solid rgba(0,0,0,0.09);
   border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  padding: 20px;
+  width: 100%;
 }
 
-.members__container {
-  padding: 20px 5px;
-  border-radius: 10px;
-  display: flex;
+.members__container-add {
+  margin-right: 10px;
 }
 
 .members__container-bench {
+  display: flex;
   width: 100%;
+  overflow: hidden;
 }
 
 .members__avatar {
   border-radius: 50%;
-  margin: 0 10px;
-  object-fit: cover;
 }
 
 .members__new-avatar {
   cursor: pointer;
+}
+
+.members__remove-container {
+  color: white;
+  background-color: rgb(208, 200, 200);
+  border-radius: 50%;
+  padding: 20px;
+  margin: 0 50px;
+}
+
+.members__remove-image {
+  width: 50px;
 }
