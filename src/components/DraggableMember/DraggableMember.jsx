@@ -5,14 +5,29 @@ import { Draggable } from "react-beautiful-dnd"
 import { DashboardContext } from '../../context/DashboardContext'
 import './DraggableMember.css'
 
-export const DraggableMember = ({ member, index }) => {
+export const DraggableMember = ({ teamMember, index }) => {
   const { dashboardData } = useContext(DashboardContext)
-  const { updateBenchMemberName, removeBenchMember } = dashboardData;
-  const [memberName, setMemberName] = useState(member.name)
+  const { updateBenchMember, removeBenchMember } = dashboardData;
+
+  const [member, setMember] = useState(teamMember)
   
   const handleChange = ({ target }) => {
-    setMemberName(target.value)
-    updateBenchMemberName(member.id, target.value)
+    let imageUrl;
+    if (!target.value) {
+      imageUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent('?')}`
+    } else {
+      imageUrl = `https://ui-avatars.com/api/?background=7FC8F8&name=${encodeURIComponent(target.value)}`
+    }
+    setMember({
+      ...member,
+      image: imageUrl,
+      name: target.value
+    })
+    updateBenchMember({
+      ...member,
+      image: imageUrl,
+      name: target.value
+    })
   }
   
   const inputStyle = {
@@ -35,19 +50,19 @@ export const DraggableMember = ({ member, index }) => {
             <img
               className='draggable__member-avatar'
               src={member.image}
-              alt={memberName}
+              alt={member.name}
               width={100} />
             
             <div>
               <Input 
               autoFocus={true}
               style={inputStyle}
-              htmlSize={10}
-              maxLength={10}
+              htmlSize={15}
+              maxLength={15}
               className="draggable__member-name-input"
               bordered={false}
               onChange={handleChange}
-              value={memberName}
+              value={member.name}
               placeholder="Enter a new name"
               />
             </div>
@@ -60,12 +75,4 @@ export const DraggableMember = ({ member, index }) => {
       }
     </Draggable>
   )
-}
-DraggableMember.propTypes = {
-  member: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
-  }),
-  index: PropTypes.number.isRequired
 }

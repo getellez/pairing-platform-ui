@@ -24,14 +24,15 @@ export const dashboardReducer = (state, action) => {
         }
       }
       return newState
-    case 'update_bench_member_name':
-      for (let i = 0; i < newState.members.length; i++) {
-        const benchMember = newState.members[i];
-        if (benchMember.id === action.payload.memberId) {
-          const memberIndex = newState.members.findIndex(member => member.id === action.payload.memberId)
-          newState.members[memberIndex].name = action.payload.newMemberName
+    
+    case 'update_bench_member':
+      const benchMembers = newState.members.map(m => {
+        if (m.id === action.payload.id) {
+          return action.payload
         }
-      }
+        return m
+      })
+      newState.members = benchMembers
       return newState
 
     case 'update_task_title':

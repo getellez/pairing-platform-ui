@@ -18,7 +18,7 @@ export const DroppableMember = () => {
             className="members__container-bench">
             { dashboard?.members &&
               dashboard.members.map((member, index) => (
-                <DraggableMember key={member.id} member={member} index={index} />
+                <DraggableMember key={member.id} teamMember={member} index={index} />
               ))
             }
             {droppableProvided.placeholder}

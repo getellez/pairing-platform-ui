@@ -8,7 +8,6 @@ import { urls } from '../config/urls';
 
 export const useDashboard = () => {
   
-  const navigate = useNavigate()
   const [dashboard, dispatch] = useReducer(dashboardReducer,{})
   
   const handleSortMembers = ({ source, destination }) => {
@@ -43,7 +42,7 @@ export const useDashboard = () => {
       payload: {
         "id": `member-${uuidv4()}`,
         "name": "",
-        "image": "https://uploads-ssl.webflow.com/5ead65b4cd1146b85071bfdf/608ff2a12bc39c3ff457ae36_Bored%20Ape%208622-%20Image%202.png"
+        "image": `https://ui-avatars.com/api/?name=${encodeURIComponent('?')}`
       }
     })
   }
@@ -69,13 +68,10 @@ export const useDashboard = () => {
     })
   }
 
-  const updateBenchMemberName = (memberId, newMemberName) => {
+  const updateBenchMember = (member) => {
     dispatch({
-      type: 'update_bench_member_name',
-      payload: {
-        memberId,
-        newMemberName
-      }
+      type: 'update_bench_member',
+      payload: member
     })
   }
 
@@ -113,7 +109,6 @@ export const useDashboard = () => {
       payload: dashboard
     })
   }
-
   
   return {
     dashboard,
@@ -123,7 +118,7 @@ export const useDashboard = () => {
     addNewTask,
     updateTaskTitle,
     updateTaskMemberName,
-    updateBenchMemberName,
+    updateBenchMember,
     removeTask,
     removeBenchMember,
     removeTaskMember,
