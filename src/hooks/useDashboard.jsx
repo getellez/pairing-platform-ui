@@ -107,54 +107,18 @@ export const useDashboard = () => {
     })
   }
 
-  useEffect(() => {
-    const getDashboard = async () => {
-      const tokenPayload = getTokenPayload()
-      if (tokenPayload) {
-        const dashboardName = tokenPayload.dashboardName
-        const endpoint = `/api/v1/dashboards/${dashboardName}`
-        const authTokenHeader = getTokenHeader()
-        if (authTokenHeader) {
-          const dashboard = await sendApiRequest.get(endpoint, authTokenHeader)
-          if (dashboard.statusCode === 200) {
-            dispatch({
-              type: 'initial_state',
-              payload: dashboard.data
-            })
-          } else {
-            navigate(urls.loginPage)
-            localStorage.removeItem('paring-token')
-          }
-        } else {
-          navigate(urls.loginPage)
-        }
-      }
-    }
-    getDashboard()
-  }, [])
+  const getInitialDashboardData = (dashboard) => {
+    dispatch({
+      type: 'initial_state',
+      payload: dashboard
+    })
+  }
 
-  useEffect(() => {
-    const updateDashboard = async () => {
-      const dashboardName = getDashboardName()
-      if (!dashboardName) {
-        return 
-      }
-      const endpoint = `/api/v1/dashboards/${dashboardName}`
-      const headers = {
-        "Content-type": "application/json; charset=UTF-8",
-        ...getTokenHeader()
-      }
-      const response = await sendApiRequest.post(endpoint, dashboard, headers)
-      if (response.statusCode !== 201) {
-        navigate(urls.loginPage)
-      }
-    }
-    updateDashboard()
-  }, [dashboard])
   
   return {
     dashboard,
     handleSortMembers,
+    getInitialDashboardData,
     addNewMember,
     addNewTask,
     updateTaskTitle,
@@ -162,6 +126,6 @@ export const useDashboard = () => {
     updateBenchMemberName,
     removeTask,
     removeBenchMember,
-    removeTaskMember
+    removeTaskMember,
   }
 }
