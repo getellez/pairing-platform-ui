@@ -7,20 +7,24 @@ import { DashboardContext } from '../../context/DashboardContext';
 import 'antd/lib/input/style/index.css'
 import './task.css'
 
-export const Task = ({ taskId, members, title }) => {
+export const Task = ({ id, title, assignedMembers }) => {
 
   const inputRef = useRef()
-  const [taskTitle, setTaskTitle] = useState(title)
+  const [ task, setTask ] = useState({id, title, assignedMembers})
   const { dashboardData } = useContext(DashboardContext)
   const { updateTaskTitle, removeTask } = dashboardData;
 
   const handleOnChange = (e) => {
-    setTaskTitle(e.target.value)
-    updateTaskTitle(taskId, e.target.value)
+    setTask({
+      ...task,
+      title: e.target.value
+    })
+    updateTaskTitle(task.id, e.target.value)
+
   }
   
   const handleRemoveTask = () => {
-    removeTask(taskId)
+    removeTask(task.id)
   }
   
   useEffect(() => {
@@ -46,7 +50,7 @@ export const Task = ({ taskId, members, title }) => {
   return (
     <>
     {
-      taskId && (
+      id && (
         <div className='task__column'>
           <div className='task__wrapper'>
             
@@ -60,7 +64,7 @@ export const Task = ({ taskId, members, title }) => {
               maxLength={50}
               placeholder="¿What's the name of this task?"
               bordered={false}
-              value={taskTitle}
+              value={task.title}
               onChange={handleOnChange}
               />
               <p className='task__header-close' onClick={handleRemoveTask}>
@@ -68,7 +72,7 @@ export const Task = ({ taskId, members, title }) => {
               </p>
             </div>
 
-            <DroppableTaskMember id={taskId} members={members} />
+            <DroppableTaskMember taskId={task.id} members={assignedMembers} />
           </div>
         </div>
       )

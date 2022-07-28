@@ -21,7 +21,7 @@ export const Dashboard = () => {
         <TasksList>
           { dashboard?.tasks && 
             dashboard.tasks.map(task => (
-                <Task key={task.id} taskId={task.id} title={task.title} members={task.assignedMembers} />
+                <Task key={task.id} id={task.id} title={task.title} assignedMembers={task.assignedMembers} />
             ))
           }
         </TasksList>

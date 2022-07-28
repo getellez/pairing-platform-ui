@@ -1,9 +1,9 @@
 import { Droppable } from 'react-beautiful-dnd';
 import { DraggableTaskMember } from '../DraggableTaskMember/DraggableTaskMember';
 
-export const DroppableTaskMember = ({ id, members }) => {
+export const DroppableTaskMember = ({ taskId, members }) => {
   return (
-    <Droppable droppableId={id} direction='horizontal'>
+    <Droppable droppableId={taskId} direction='horizontal'>
       {
         (droppableProvided) => (
           <div
@@ -12,7 +12,7 @@ export const DroppableTaskMember = ({ id, members }) => {
             className='task__members'>
             { members && 
               members.map((member, index) => (
-                <DraggableTaskMember key={member.id} member={member} index={index} taskId={id} />
+                <DraggableTaskMember key={member.id} member={member} index={index} taskId={taskId} />
               ))
             }
             {droppableProvided.placeholder}
