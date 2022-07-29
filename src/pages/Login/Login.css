@@ -1,16 +1,15 @@
 .Login {
-  /* position: relative; */
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100%;
+}
+
+.Login__column-left {
+  padding: 100px;
 }
 .Login__container {
-  /* border: 1px solid rgba(0, 0, 0, 0.2); */
-  width: 30%;
-  /* padding: 100px; */
-  position: absolute;
   text-align: center;
-  margin: auto;
-  left: 0;
-  right: 0;
-  transform: translate(0%, 150%);
+  margin: auto 0;
 }
 
 .Login__input-container {
