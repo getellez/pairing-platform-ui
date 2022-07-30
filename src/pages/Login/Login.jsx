@@ -44,7 +44,7 @@ export const Login = () => {
   return (
     <section className="Login">
       <div className="Login__column-left">
-        <div className="Login__container">
+        <div className="Login__container-left">
           <form onSubmit={handleLogin}>
             <div className='Login__input-container'>
               <input
@@ -82,7 +82,19 @@ export const Login = () => {
 
         </div>
       </div>
-      <div className="Login__column-right"></div>
+      <div className="Login__column-right">
+        <div className="Login__container-right">
+          <div className="step-container">
+            <h1>1. Add your teammates to the dashboard</h1>
+          </div>
+          <div className="step-container">
+            <h1>2. Create new tasks</h1>
+          </div>
+          <div className="step-container">
+            <h1>3. Drag and Drop the team members into a task</h1>
+          </div>
+        </div>
+      </div>
 
     </section>
   )

@@ -35,8 +35,8 @@ export const DraggableTaskMember = ({ member, index, taskId }) => {
             <div className="task__members-name">
               <Input 
               style={inputStyle} 
-              htmlSize={10}
-              maxLength={10}
+              htmlSize={15}
+              maxLength={15}
               placeholder='Type a new name'
               bordered={false}
               value={memberName} 

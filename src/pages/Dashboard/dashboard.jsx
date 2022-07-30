@@ -38,7 +38,7 @@ export const Dashboard = () => {
           localStorage.removeItem('pairing-token')
           navigate(urls.loginPage)
         } else {
-          /* Go to a different Unknown Error Page */
+          /* TODO: Go to a different Unknown Error Page */
           navigate(urls.loginPage)
         }
 
