@@ -34,7 +34,11 @@ export const Dashboard = () => {
         
         if (dashboard.statusCode === 200) {
           getInitialDashboardData(dashboard.data)
+        } else if(dashboard.statusCode === 401) {
+          localStorage.removeItem('pairing-token')
+          navigate(urls.loginPage)
         } else {
+          /* Go to a different Unknown Error Page */
           navigate(urls.loginPage)
         }
 
