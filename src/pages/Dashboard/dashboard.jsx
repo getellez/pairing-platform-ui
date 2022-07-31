@@ -8,9 +8,8 @@ import { Task } from '../../components/Task/Task';
 import { DashboardContext } from '../../context/DashboardContext';
 import { getTokenPayload, getTokenHeader, sendApiRequest, getDashboardName } from '../../utils/client';
 import { urls } from '../../config/urls';
-import { AuthContext } from '../../context/AuthContext';
 
-import './Dashboard.css'
+import './dashboard.css'
 import { Navbar } from '../../components/Navbar/Navbar';
 
 export const Dashboard = () => {
