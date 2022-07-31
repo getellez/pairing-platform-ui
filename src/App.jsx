@@ -7,7 +7,7 @@ import { DashboardRouter } from './routers/DashboardRouter';
 import { AuthContextProvider } from './components/AuthContext/AuthContext';
 import { PublicRoute } from './components/PublicRoute/PublicRoute';
 
-import './App.css'
+import './app.css'
 
 function App() {
 
