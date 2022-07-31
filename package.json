@@ -1,9 +1,10 @@
 {
   "name": "pairing-platform",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "engines": {
-    "node": "16"
+    "node": "16.13.2",
+    "npm": "8.1.2"
   },
   "scripts": {
     "dev": "vite",
