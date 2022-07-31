@@ -2,7 +2,7 @@
   "name": "pairing-platform",
   "private": true,
   "version": "0.0.0",
-  "engines": { 
+  "engines": {
     "node": "16"
   },
   "scripts": {
@@ -33,6 +33,6 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "28.1.2",
     "jest-environment-jsdom": "28.1.2",
-    "vite": "2.9.9"
+    "vite": "^2.9.9"
   }
 }
