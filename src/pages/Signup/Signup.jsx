@@ -45,7 +45,7 @@ export const Signup = () => {
       <div className="Signup__container-left">
         <div className="Signup__form-container">
           <form action="post" className="Signup__form" onSubmit={handleSignup}>
-            <h1 className='Signup__title'>Easy Pair</h1>
+            <h1 className='Signup__title'>{APP_NAME}</h1>
             <div className='Signup__input-container'>
               <input 
                   className="Signup__input"

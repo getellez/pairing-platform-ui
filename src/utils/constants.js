@@ -1,1 +1,1 @@
-export const APP_NAME = 'Easy Pair'
+export const APP_NAME = 'Task Pair'
