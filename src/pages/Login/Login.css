@@ -41,11 +41,14 @@
 }
 
 .error-message {
-  margin-top: 50px;
   color: white;
   padding: 10px;
   background-color: rgb(247, 129, 129);
   border-radius: 10px;
+}
+
+.signup-message {
+  margin-bottom: 15px;
 }
 
 .Login__column-right {

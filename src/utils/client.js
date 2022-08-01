@@ -29,6 +29,8 @@ export const sendApiRequest = {
     
     if (response.status === 200 || response.status === 201 ) {
       data = await response.json()
+    } else if (response.status === 400) {
+      data = await response.json()
     }
 
     return {
