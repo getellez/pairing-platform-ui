@@ -4,6 +4,7 @@ import { sendApiRequest } from '../../utils/client';
 import { urls } from '../../config/urls';
 
 import './Login.css'
+import { APP_NAME } from '../../utils/constants';
 
 export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('')
@@ -43,7 +44,7 @@ export const Login = () => {
       <div className="Login__column-left">
         <div className="Login__container-left">
           
-          <h1 className='Login__title'>Easy Pair</h1>
+          <h1 className='Login__title'>{APP_NAME}</h1>
           <form onSubmit={handleLogin}>
             <div className='Login__input-container'>
               <input
