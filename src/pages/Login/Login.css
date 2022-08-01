@@ -67,7 +67,10 @@
 .Login__container-right h1 {
   font-weight: 300;
 }
-
+.Login__title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 5rem;
+}
 .step-container {
   width: 100%;
   box-sizing: border-box;
