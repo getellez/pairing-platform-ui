@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { sendApiRequest } from '../../utils/client';
 import { AuthContext } from '../../context/AuthContext';
+import { urls } from '../../config/urls';
 
 import './Login.css'
 
@@ -45,6 +46,8 @@ export const Login = () => {
     <section className="Login">
       <div className="Login__column-left">
         <div className="Login__container-left">
+          
+          <h1 className='Login__title'>Easy Pair</h1>
           <form onSubmit={handleLogin}>
             <div className='Login__input-container'>
               <input
@@ -72,6 +75,12 @@ export const Login = () => {
               <input className='Login__button' type="submit" value="LOGIN" />
             </div>
           </form>
+
+          <p>
+            <small>
+              Do you want a new account? <NavLink to={urls.signupPage}>Signup</NavLink>
+            </small>
+          </p>
           {
             errorMessage && (
               <small className='error-message'>

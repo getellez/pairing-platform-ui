@@ -1,9 +1,8 @@
-import { Input } from "antd"
 import { useState } from "react"
-
 import { sendApiRequest } from '../../utils/client';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { urls } from '../../config/urls';
+import { APP_NAME } from '../../utils/constants';
 
 import './Signup.css'
 
@@ -39,45 +38,68 @@ export const Signup = () => {
       [target.name]: target.value  
     })
   }
-  const inputStyle = {
-    textAlign: 'center',
-    marginBottom: '15px',
-    marginTop: '5px'
-  }
+
   return (
     <section className="Signup">
       
       <div className="Signup__container-left">
-        <form action="post" className="Signup__form" onSubmit={handleSignup}>
-          <span className="Signup__form-label">Choose a name for your dashboard:</span>
-          <Input 
-              style={inputStyle}
-              onChange={handleChange}
-              type="text" 
-              name="dashboardName" />
-          <span className="Signup__form-label">Your email:</span>
-          <Input 
-              style={inputStyle}
-              onChange={handleChange}
-              type="text" 
-              name="email" />
-          <span className="Signup__form-label">Enter a password:</span>
-          <Input 
-              style={inputStyle}
-              onChange={handleChange}
-              type="password" 
-              name="password" />
-          <Input type="submit" className="Signup__form-button" value="SIGNUP" />
-          {errorMessage && (<div className="Signup__form-error">
-                              <small>{ errorMessage }</small>
-                            </div>)
-          }
-        </form>
+        <div className="Signup__form-container">
+          <form action="post" className="Signup__form" onSubmit={handleSignup}>
+            <h1 className='Signup__title'>Easy Pair</h1>
+            <div className='Signup__input-container'>
+              <input 
+                  className="Signup__input"
+                  placeholder="Enter a dashboard name"
+                  onChange={handleChange}
+                  type="text" 
+                  name="dashboardName" />
+            </div>
+
+            <div className='Signup__input-container'>
+              <input 
+                  className="Signup__input"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  type="text" 
+                  name="email" />
+            </div>
+            <div className='Signup__input-container'>
+              <input 
+                  className="Signup__input"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  type="password" 
+                  name="password" />
+            </div>
+            <div className='Signup__input-container'>
+              <input 
+              className="Signup__form-button"
+              type="submit" 
+              value="SIGNUP" />
+            </div>
+
+
+            {
+              errorMessage && (
+              <div className="Signup__form-error">
+                <small>{ errorMessage }</small>
+              </div>
+              )
+            }
+          <p>
+            <small>
+              Do you already have an account?  <NavLink to={urls.loginPage}> Login </NavLink>
+            </small>
+          </p>
+          </form>
+        </div>
       </div>
       <div className="Signup__container-right">
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium, minima distinctio nobis exercitationem commodi ratione laudantium ipsa quo fugit! Aperiam aliquam cum reprehenderit non nulla molestias asperiores rem. Delectus, iste?
-        </p>
+        <div className="Signup__description">
+          <p>
+            { APP_NAME } is a platform base on the Pair Programming methodology that you can use to relate team members with tasks.
+          </p>
+        </div>
       </div>
 
 
