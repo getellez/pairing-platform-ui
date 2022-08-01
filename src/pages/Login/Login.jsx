@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom';
 import { sendApiRequest } from '../../utils/client';
-import { AuthContext } from '../../context/AuthContext';
 import { urls } from '../../config/urls';
 
 import './Login.css'
@@ -13,8 +12,6 @@ export const Login = () => {
     password: ''
   })
   const navigate = useNavigate()
-
-  const { isLoggedIn, onLogin } = useContext(AuthContext)
 
   const handleChange = ({ target }) => {
     setFormData({
@@ -31,11 +28,10 @@ export const Login = () => {
     }
     const login = await sendApiRequest.post(url, formData, headers)
     if (login.statusCode !== 200) {
-      setErrorMessage(login.message)
+      setErrorMessage(login.data.message)
     } else {
       setErrorMessage('')
       localStorage.setItem('pairing-token', JSON.stringify(login.data.token))
-      onLogin()
       navigate(`/dashboards/${formData.dashboardName}`)
       window.location.reload()
     }
@@ -76,16 +72,18 @@ export const Login = () => {
             </div>
           </form>
 
-          <p>
+          <p className='signup-message'>
             <small>
               Do you want a new account? <NavLink to={urls.signupPage}>Signup</NavLink>
             </small>
           </p>
           {
             errorMessage && (
-              <small className='error-message'>
-                {errorMessage}
-              </small>
+              <p className='error-message'>
+                <small>
+                  {errorMessage}
+                </small>
+              </p>
             )
           }
 

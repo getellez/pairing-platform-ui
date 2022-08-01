@@ -97,7 +97,7 @@ export const Signup = () => {
       <div className="Signup__container-right">
         <div className="Signup__description">
           <p>
-            { APP_NAME } is a platform base on the Pair Programming methodology that you can use to relate team members with tasks.
+            { APP_NAME } is a platform based on the Pair Programming methodology that you can use to relate team members with tasks.
           </p>
         </div>
       </div>
