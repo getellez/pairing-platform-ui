@@ -9,8 +9,13 @@ import './Login.css'
 
 export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('')
-  const { register, handleSubmit, formState: { errors }} = useForm({ defaultValues: { dashboardName: '', password: '' } })
+  const { register, setValue, handleSubmit, formState: { errors }} = useForm({ defaultValues: { dashboardName: '', password: '' } })
   const navigate = useNavigate()
+
+  const handleChange = ({ target }) => {
+    const dashboardName = target.value;
+    setValue('dashboardName', dashboardName.replace(/[^\w]+/g,''))
+  }
 
   const handleLogin = async (data) => {
     const url = '/api/v1/auth/signin';
@@ -40,9 +45,14 @@ export const Login = () => {
                 { 
                   ...register("dashboardName", 
                   {
-                    required: "Enter a valid dashboard name",
+                    required: true,
+                    pattern: {
+                      value: /[\w]+/g,
+                      message: 'Only numbers and letters are valid'
+                    }
                   })
                 }
+                onChange={handleChange}
                 type="text"
                 className='Login__input'
                 placeholder='Dashboard name'

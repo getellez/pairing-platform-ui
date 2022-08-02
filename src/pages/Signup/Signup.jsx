@@ -11,7 +11,12 @@ export const Signup = () => {
   
   const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
-  const { handleSubmit, register, formState: { errors } } = useForm({ email: '', password: '', dashboardName: '' })
+  const { handleSubmit, setValue, register, formState: { errors } } = useForm({ email: '', password: '', dashboardName: '' })
+
+  const handleChange = ({ target }) => {
+    const dashboardName = target.value;
+    setValue('dashboardName', dashboardName.replace(/[^\w]+/g,''))
+  }
 
   const handleSignup = async (data) => {
     const endpoint = '/api/v1/auth/signup'
@@ -36,14 +41,19 @@ export const Signup = () => {
             <h1 className='Signup__title'>{APP_NAME}</h1>
             <div className='Signup__input-container'>
               <input 
-                  className="Signup__input"
-                  placeholder="Enter a dashboard name"
-                  type="text" 
                   {
                     ...register("dashboardName", {
-                      required: "Enter a valid dashboard name"
+                      required: "Enter a valid dashboard name",
+                      pattern: {
+                        value: /[\w]+/g,
+                        message: 'Only numbers and letters are valid'
+                      }
                     })
                   }
+                  type="text" 
+                  onChange={handleChange}
+                  className="Signup__input"
+                  placeholder="Enter a dashboard name"
                   />
                   {
                     errors?.dashboardName?.message && (
