@@ -6,13 +6,23 @@
 .NewTask__header-container {
   border-radius: 10px;
   border: 2px dashed white;
-  background-color: rgba(127, 200, 248, 0.4);
+  background-color: #7FC8F8;
   color: white;
   cursor: pointer;
   text-align: center;
-  padding: 25px;
+  padding: 1.8rem;
 }
 
 .NewTask__header-title {
   font-weight: 400;
+  color: white;
+}
+
+.NewTask__add-icon {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  color: white;
+  margin: 0.4rem auto;
+  padding: 1.9rem;
+  width: fit-content;
 }

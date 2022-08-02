@@ -16,7 +16,12 @@
 }
 
 .members__container-add {
+  cursor: pointer;
   margin-right: 10px;
+  background-color: lightgray;
+  color: white;
+  padding: 3rem;
+  border-radius: 50%;
 }
 
 .members__container-bench {
