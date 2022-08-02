@@ -9,12 +9,11 @@
   background-color: white;
   display: flex;
   padding: 100px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 .Signup__form-container {
-  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
 
 .Signup__form-button {
@@ -55,11 +54,23 @@
   align-items: center;
 }
 
-.Signup__form-error {
+.Signup__error {
   margin-top: 10px;
   text-align: center;
   color: white;
-  padding: 10px;
+  padding: 5px 10px;
   background-color: rgb(247, 129, 129);
-  border-radius: 10px;
+  border-radius: 5px;
+}
+
+.Signup__error-container {
+  text-align: left;
+  
+}
+.Signup__error-field {
+  color: red;
+}
+
+.Login__message {
+  margin-bottom: 15px;
 }

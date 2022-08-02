@@ -1,42 +1,31 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom';
 import { sendApiRequest } from '../../utils/client';
 import { urls } from '../../config/urls';
+import { APP_NAME } from '../../utils/constants';
+import { useForm } from 'react-hook-form';
 
 import './Login.css'
-import { APP_NAME } from '../../utils/constants';
 
 export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('')
-  const [formData, setFormData] = useState({
-    dashboardName: '',
-    password: ''
-  })
+  const { register, handleSubmit, formState: { errors }} = useForm({ defaultValues: { dashboardName: '', password: '' } })
   const navigate = useNavigate()
 
-  const handleChange = ({ target }) => {
-    setFormData({
-      ...formData,
-      [target.name]: target.value
-    })
-  }
-
-  const handleLogin = async (e) => {
-    e.preventDefault()
+  const handleLogin = async (data) => {
     const url = '/api/v1/auth/signin';
     const headers = {
       "Content-type": "application/json; charset=UTF-8"
     }
-    const login = await sendApiRequest.post(url, formData, headers)
+    const login = await sendApiRequest.post(url, data, headers)
     if (login.statusCode !== 200) {
       setErrorMessage(login.data.message)
     } else {
       setErrorMessage('')
       localStorage.setItem('pairing-token', JSON.stringify(login.data.token))
-      navigate(`/dashboards/${formData.dashboardName}`)
+      navigate(`/dashboards/${data.dashboardName}`)
       window.location.reload()
     }
-
   }
 
   return (
@@ -45,28 +34,50 @@ export const Login = () => {
         <div className="Login__container-left">
           
           <h1 className='Login__title'>{APP_NAME}</h1>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSubmit(handleLogin)}>
             <div className='Login__input-container'>
               <input
-                onChange={handleChange}
+                { 
+                  ...register("dashboardName", 
+                  {
+                    required: "Enter a valid dashboard name",
+                  })
+                }
+                type="text"
                 className='Login__input'
                 placeholder='Dashboard name'
-                type="text"
-                name="dashboardName"
-                value={formData.dashboardName}
               />
+            {
+              errors?.dashboardName?.message && (
+              <div className='Login__error-container'>
+                <p className='Login__error-field'>
+                  <small>
+                    { errors?.dashboardName?.message }
+                  </small>
+                </p>
+              </div>
+              )
+            }
             </div>
 
             <div className='Login__input-container'>
               <input
-                onChange={handleChange}
                 className='Login__input'
-                placeholder='Password'
                 type="password"
-                name="password"
-                value={formData.password}
-
+                placeholder='Password'
+                { ...register("password", { required: "The password is required" }) }
               />
+              {
+                errors?.password?.message && (
+                <div className='Login__error-container'>
+                  <p className='Login__error-field'>
+                    <small>
+                      { errors?.password?.message }
+                    </small>
+                  </p>
+                </div>
+                )
+              }
             </div>
             <div className='Login__input-container'>
               <input className='Login__button' type="submit" value="LOGIN" />
@@ -80,7 +91,7 @@ export const Login = () => {
           </p>
           {
             errorMessage && (
-              <p className='error-message'>
+              <p className='Login__error'>
                 <small>
                   {errorMessage}
                 </small>

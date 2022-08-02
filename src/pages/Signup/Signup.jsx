@@ -3,40 +3,27 @@ import { sendApiRequest } from '../../utils/client';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { urls } from '../../config/urls';
 import { APP_NAME } from '../../utils/constants';
+import { useForm } from 'react-hook-form';
 
 import './Signup.css'
 
 export const Signup = () => {
-  const navigate = useNavigate()
-
-  const [signupForm, setSignupForm] = useState({
-    dashboardName: '',
-    email: '',
-    password: ''
-  })
   
   const [errorMessage, setErrorMessage] = useState('')
+  const navigate = useNavigate()
+  const { handleSubmit, register, formState: { errors } } = useForm({ email: '', password: '', dashboardName: '' })
 
-
-  const handleSignup = async (e) => {
-    e.preventDefault()
+  const handleSignup = async (data) => {
     const endpoint = '/api/v1/auth/signup'
     const headers = {
       "Content-type": "application/json; charset=UTF-8"
     }
-    const response = await sendApiRequest.post(endpoint, signupForm, headers)
-    if (response.statusCode === 201) {
+    const signup = await sendApiRequest.post(endpoint, data, headers)
+    if (signup.statusCode === 201) {
       navigate(urls.loginPage)
     } else {
-      setErrorMessage(response.message)
+      setErrorMessage(signup.data.message)
     }
-  }
-
-  const handleChange = ({ target }) => {
-    setSignupForm({
-      ...signupForm,
-      [target.name]: target.value  
-    })
   }
 
   return (
@@ -44,32 +31,81 @@ export const Signup = () => {
       
       <div className="Signup__container-left">
         <div className="Signup__form-container">
-          <form action="post" className="Signup__form" onSubmit={handleSignup}>
+          
+          <form className="Signup__form" onSubmit={handleSubmit(handleSignup)}>
             <h1 className='Signup__title'>{APP_NAME}</h1>
             <div className='Signup__input-container'>
               <input 
                   className="Signup__input"
                   placeholder="Enter a dashboard name"
-                  onChange={handleChange}
                   type="text" 
-                  name="dashboardName" />
+                  {
+                    ...register("dashboardName", {
+                      required: "Enter a valid dashboard name"
+                    })
+                  }
+                  />
+                  {
+                    errors?.dashboardName?.message && (
+                    <div className='Signup__error-container'>
+                      <p className='Signup__error-field'>
+                        <small>
+                          { errors?.dashboardName?.message }
+                        </small>
+                      </p>
+                    </div>
+                    )
+                  }
             </div>
 
             <div className='Signup__input-container'>
               <input 
                   className="Signup__input"
                   placeholder="Email"
-                  onChange={handleChange}
-                  type="text" 
-                  name="email" />
+                  {
+                    ...register("email", { 
+                      required: "Enter a valid email",
+                      pattern: {
+                        value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                        message: 'Enter a valid email address'
+                      }
+                    })
+                  }
+                  />
+              {
+                errors?.email?.message && (
+                <div className='Signup__error-container'>
+                  <p className='Signup__error-field'>
+                    <small>
+                      { errors?.email?.message }
+                    </small>
+                  </p>
+                </div>
+                )
+              }
             </div>
             <div className='Signup__input-container'>
               <input 
-                  className="Signup__input"
-                  placeholder="Password"
-                  onChange={handleChange}
-                  type="password" 
-                  name="password" />
+                className="Signup__input"
+                placeholder="Password"
+                type="password"
+                {
+                  ...register("password", {
+                    required: "Enter a valid password"
+                  })
+                }
+              />
+              {
+                errors?.password?.message && (
+                <div className='Signup__error-container'>
+                  <p className='Signup__error-field'>
+                    <small>
+                      { errors?.password?.message }
+                    </small>
+                  </p>
+                </div>
+                )
+              }
             </div>
             <div className='Signup__input-container'>
               <input 
@@ -77,21 +113,20 @@ export const Signup = () => {
               type="submit" 
               value="SIGNUP" />
             </div>
-
-
-            {
-              errorMessage && (
-              <div className="Signup__form-error">
-                <small>{ errorMessage }</small>
-              </div>
-              )
-            }
-          <p>
+          </form>
+          <p className="Login__message">
             <small>
               Do you already have an account?  <NavLink to={urls.loginPage}> Login </NavLink>
             </small>
           </p>
-          </form>
+          {
+            errorMessage && (
+              <p className='Signup__error'>
+                <small>{ errorMessage }</small>
+              </p>
+            )
+          }
+
         </div>
       </div>
       <div className="Signup__container-right">
