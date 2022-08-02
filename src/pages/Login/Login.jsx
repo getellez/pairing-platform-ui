@@ -14,7 +14,9 @@ export const Login = () => {
 
   const handleChange = ({ target }) => {
     const dashboardName = target.value;
-    setValue('dashboardName', dashboardName.replace(/[^\w]+/g,''))
+    const newDashboardName = dashboardName.replace(/[^\w]+/g,'').toUpperCase()
+
+    setValue('dashboardName', newDashboardName)
   }
 
   const handleLogin = async (data) => {
