@@ -21,6 +21,12 @@ export const dashboardReducer = (state, action) => {
         if (task.id === action.payload.taskId) {
           const memberIndex = task.assignedMembers.findIndex(member => member.id === action.payload.memberId)
           task.assignedMembers[memberIndex].name = action.payload.newMemberName
+          if (!action.payload.newMemberName) {
+            task.assignedMembers[memberIndex].image = `https://ui-avatars.com/api/?background=7FC8F8&name=${encodeURIComponent('?')}`
+          } else {
+            task.assignedMembers[memberIndex].image = `https://ui-avatars.com/api/?background=7FC8F8&name=${encodeURIComponent(action.payload.newMemberName)}`
+          }
+          
         }
       }
       return newState
