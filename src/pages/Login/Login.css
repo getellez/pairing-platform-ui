@@ -1,15 +1,21 @@
 .Login {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 100%;
   height: 100vh;
 }
 
 .Login__column-left {
-  padding: 100px;
+  padding: 10px;
   display: flex;
   align-items: center;
   background-color: white;
 }
+
+.Login__title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3rem;
+}
+
 .Login__container-left {
   text-align: center;
   margin: auto 0;
@@ -34,8 +40,6 @@
   width: 100%;
   text-align: center;
 }
-
-
 
 .Login__button {
   background-color: #7FC8F8;
@@ -72,13 +76,13 @@
   opacity: 1;
   background-image: radial-gradient(#0088ff 0.5px, #ffffff 0.5px);
   background-size: 10px 10px;
-  display: flex;
   align-items: center;
   justify-content: center;
+  display: none;
 }
 
 .Login__container-right {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
 }
@@ -86,16 +90,30 @@
 .Login__container-right h1 {
   font-weight: 300;
 }
-.Login__title {
-  font-family: 'Permanent Marker', cursive;
-  font-size: 5rem;
-}
+
 .step-container {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 30px;
   background-color: white;
-  margin-top: 50px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  font-size: 1rem;
+  margin-top: 50px;
+  padding: 30px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .Login {
+    grid-template-columns: 50% 50%;
+  }
+  .Login__column-left {
+    padding: 100px;
+  }
+  .Login__column-right {
+    display: flex;
+  }
+  .Login__container-right {
+    display: flex;
+    padding: 0 30px;
+  }
 }
