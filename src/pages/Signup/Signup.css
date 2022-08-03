@@ -1,6 +1,6 @@
 .Signup {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 100%;
   height: 100vh;
 }
 
@@ -8,7 +8,12 @@
   align-items: center;
   background-color: white;
   display: flex;
-  padding: 100px;
+  padding: 1rem;
+}
+
+.Signup__title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3rem;
 }
 
 .Signup__form-container {
@@ -46,17 +51,13 @@
   text-align: center;
 }
 
-.Signup__title {
-  font-family: 'Permanent Marker', cursive;
-  font-size: 5rem;
-}
 
 .Signup__container-right {
   background-color: white;
   padding: 100px;
   text-align: center;
-  display: flex;
   align-items: center;
+  display: none;
 }
 
 .Signup__error {
@@ -78,4 +79,16 @@
 
 .Login__message {
   margin-bottom: 15px;
+}
+
+@media (min-width: 1024px) {
+  .Signup {
+    grid-template-columns: 50% 50%;
+  }
+  .Signup__container-left {
+    padding: 6rem;
+  }
+  .Signup__container-right {
+    display: flex;
+  }
 }
