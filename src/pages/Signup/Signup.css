@@ -40,6 +40,7 @@
 .Signup__input {
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
   padding: 10px;
   width: 100%;
   text-align: center;
