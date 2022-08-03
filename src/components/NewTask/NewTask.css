@@ -10,12 +10,13 @@
   color: white;
   cursor: pointer;
   text-align: center;
-  padding: 1.8rem;
+  padding: 1rem;
 }
 
 .NewTask__header-title {
   font-weight: 400;
   color: white;
+  font-size: 0.8rem;
 }
 
 .NewTask__add-icon {
@@ -23,6 +24,19 @@
   border-radius: 50%;
   color: white;
   margin: 0.4rem auto;
-  padding: 1.9rem;
+  padding: 1rem;
   width: fit-content;
+}
+
+@media(min-width: 1024px) {
+  .NewTask__header-container {
+    padding: 1.5rem;
+  }
+  .NewTask__add-icon {
+    padding: 1.5rem;
+  }
+  .NewTask__header-title {
+    font-size: 1rem;
+    font-weight: 300;
+  }
 }

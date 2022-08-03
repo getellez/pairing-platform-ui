@@ -8,13 +8,13 @@ export const Members = () => {
   const { addNewMember } = dashboardData;
 
   return (
-      <section className='members'>
+      <section className="Members">
         <p className='dasboard__title'>Team members</p>
-        <div className="members__container">
+        <div className="Members__container">
           <div 
             onClick={addNewMember}
-            className="members__container-add">
-            <i className="fa-solid fa-plus"></i>
+            className="Members__add-container">
+            <i className="Members__add-icon fa-solid fa-plus"></i>
           </div>
           <DroppableMember />
         </div>
