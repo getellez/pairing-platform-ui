@@ -1,6 +1,12 @@
 .tasks {
   display: grid;
-  grid-template-columns: 50% 50%;
   justify-content: center;
   margin-top: 20px;
+  grid-template-columns: 100%;
+}
+
+@media (min-width: 1024px) {
+  .tasks {
+    grid-template-columns: 50% 50%;
+  }
 }

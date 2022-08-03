@@ -1,0 +1,36 @@
+.TaskMember {
+  text-align: center;
+}
+
+.TaskMember__avatar {
+  border-radius: 50%;
+  margin: 0;
+  object-fit: cover;
+  width: 3rem;
+}
+
+.TaskMember__name {
+  width: 100%;
+  text-align: center;
+  font-weight: 300;
+}
+
+.TaskMember__input {
+  font-size: 0.7rem;
+}
+
+.TaskMember__remove {
+  font-weight: 300;
+  color: lightgray;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .TaskMember__avatar {
+    width: 4rem;
+  }
+  .TaskMember__input {
+    font-size: 0.8rem;
+  }
+  
+}

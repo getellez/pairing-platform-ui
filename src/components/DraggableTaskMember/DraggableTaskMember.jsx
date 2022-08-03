@@ -4,6 +4,9 @@ import 'antd/lib/input/style/index.css'
 import { useContext, useState } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
 
+
+import './DraggableTaskMember.css'
+
 export const DraggableTaskMember = ({ member, index, taskId }) => {
 
   const { dashboardData } = useContext(DashboardContext)
@@ -26,15 +29,16 @@ export const DraggableTaskMember = ({ member, index, taskId }) => {
       {
         (draggableProvided) => (
           <div
-            className='task__members-container'
+            className='TaskMember'
             {...draggableProvided.draggableProps}
             ref={draggableProvided.innerRef}
             {...draggableProvided.dragHandleProps}>
               
-            <img className='task__members-avatar' src={member.image} alt={member.name} width={70} />
-            <div className="task__members-name">
+            <img className='TaskMember__avatar' src={member.image} alt={member.name} />
+            <div className="TaskMember__name">
               <Input 
               style={inputStyle} 
+              className="TaskMember__input"
               htmlSize={15}
               maxLength={15}
               placeholder='Type a new name'
@@ -43,7 +47,7 @@ export const DraggableTaskMember = ({ member, index, taskId }) => {
               onChange={handleOnChange}
               />
             </div>
-            <div className="task__member-remove" onClick={() => removeTaskMember(taskId, member.id)}>
+            <div className="TaskMember__remove" onClick={() => removeTaskMember(taskId, member.id)}>
               <small>
                 <strong>x</strong>
               </small>

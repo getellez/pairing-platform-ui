@@ -31,30 +31,6 @@
   flex-wrap: wrap;
 }
 
-.task__members-container {
-  margin-right: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.task__members-avatar {
-  border-radius: 50%;
-  margin: 0;
-  object-fit: cover;
-}
-
-.task__members-name {
-  width: 100%;
-  text-align: center;
-  font-weight: 300;
-}
-
 .task__header-title {
   font-weight: 300;
-}
-
-.task__member-remove {
-  font-weight: 300;
-  color: lightgray;
-  cursor: pointer;
 }

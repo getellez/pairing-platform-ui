@@ -1,5 +1,4 @@
 import { Input } from 'antd'
-import PropTypes from 'prop-types'
 import { useContext, useState } from 'react'
 import { Draggable } from "react-beautiful-dnd"
 import { DashboardContext } from '../../context/DashboardContext'
@@ -30,12 +29,6 @@ export const DraggableMember = ({ teamMember, index }) => {
     })
   }
   
-  const inputStyle = {
-    margin: 0,
-    padding: 0,
-    fontWeight: 300,
-    fontFamily:'Roboto'
-  }
 
   return (
     <Draggable draggableId={member.id} index={index}>
@@ -53,18 +46,16 @@ export const DraggableMember = ({ teamMember, index }) => {
               alt={member.name}
               width={100} />
             
-            <div>
+            <div className='DraggableMember__container'>
               <Input 
-              autoFocus={true}
-              style={inputStyle}
-              htmlSize={15}
-              maxLength={15}
-              className="draggable__member-name-input"
-              bordered={false}
-              onChange={handleChange}
-              value={member.name}
-              placeholder="Enter a new name"
-              />
+                className="DraggableMember__input"
+                autoFocus={true}
+                htmlSize={15}
+                maxLength={15}
+                placeholder="Enter a new name"
+                bordered={false}
+                value={member.name}
+                onChange={handleChange}/>
             </div>
             <div className='draggable__member-remove' onClick={() => removeBenchMember(member.id)}>
               <small>x</small>

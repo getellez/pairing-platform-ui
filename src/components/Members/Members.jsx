@@ -14,7 +14,7 @@ export const Members = () => {
           <div 
             onClick={addNewMember}
             className="members__container-add">
-            <i class="fa-solid fa-plus"></i>
+            <i className="fa-solid fa-plus"></i>
           </div>
           <DroppableMember />
         </div>

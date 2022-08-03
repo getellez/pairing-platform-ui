@@ -12,9 +12,13 @@
   text-align: center;
 }
 
-.draggable__member-name-input {
-  text-align: center;
+.DraggableMember__container .DraggableMember__input {
+  margin: 0;
   padding: 0;
+  font-size: 0.7rem;
+  text-align: center;
+  font-family: 'Roboto';
+  font-weight: 300;
 }
 
 .draggable__member-remove {
@@ -23,4 +27,11 @@
   font-weight: bold;
   text-align: center;
   border-radius: 5px;
+}
+
+@media (min-width: 1024px) {
+  .DraggableMember__container .DraggableMember__input {
+      font-size: 0.8rem;
+  }
+
 }
