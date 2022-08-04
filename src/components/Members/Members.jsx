@@ -1,10 +1,13 @@
 import { DroppableMember } from '../DroppableMember/DroppableMember';
 import { useContext } from 'react';
 import { DashboardContext } from '../../context/DashboardContext';
+import { Spin } from 'antd';
+
 import './members.css'
+import 'antd/lib/spin/style/index.css'
 
 export const Members = () => {
-  const { dashboardData } = useContext(DashboardContext)
+  const { dashboardData, dashboardIsLoading } = useContext(DashboardContext)
   const { addNewMember } = dashboardData;
 
   return (
@@ -16,7 +19,13 @@ export const Members = () => {
             className="Members__add-container">
             <i className="Members__add-icon fa-solid fa-plus"></i>
           </div>
-          <DroppableMember />
+          {
+            dashboardIsLoading
+            ? <div className='Members__loading'>
+                <Spin className='Members__spin' />
+              </div>
+            : <DroppableMember />
+          }
         </div>
       </section>
   )

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Members } from '../../components/Members/Members';
 import { Controls } from '../../components/Controls/Controls';
 import { TasksList } from '../../components/TasksList/TasksList';
@@ -14,34 +14,39 @@ import { Navbar } from '../../components/Navbar/Navbar';
 
 export const Dashboard = () => {
   
-  const { dashboardData } = useContext(DashboardContext)
+  const { dashboardData, setDashboardIsLoading } = useContext(DashboardContext)
   const { dashboard, handleSortMembers, getInitialDashboardData } = dashboardData;
   const navigate = useNavigate()
-  const { dashboardName } = useParams()
+
   useEffect(() => {
     const getDashboard = async () => {
-      
-      const tokenPayload = getTokenPayload()
-      
-      if (!tokenPayload) {
-        navigate(urls.loginPage)
-      } else {
-        const authTokenHeader = getTokenHeader()
-        const dashboardName = tokenPayload.dashboardName
-        const endpoint = `/api/v1/dashboards/${dashboardName}`
-        const dashboard = await sendApiRequest.get(endpoint, authTokenHeader)
-        
-        if (dashboard.statusCode === 200) {
-          getInitialDashboardData(dashboard.data)
-        } else if(dashboard.statusCode === 401) {
-          localStorage.removeItem('pairing-token')
+      try {
+        const tokenPayload = getTokenPayload()
+        if (!tokenPayload) {
           navigate(urls.loginPage)
         } else {
-          /* TODO: Go to a different Unknown Error Page */
-          navigate(urls.loginPage)
+          setDashboardIsLoading(true)
+          const authTokenHeader = getTokenHeader()
+          const dashboardName = tokenPayload.dashboardName
+          const endpoint = `/api/v1/dashboards/${dashboardName}`
+          const dashboard = await sendApiRequest.get(endpoint, authTokenHeader)
+          setDashboardIsLoading(false)
+          if (dashboard.statusCode === 200) {
+            getInitialDashboardData(dashboard.data)
+          } else if(dashboard.statusCode === 401) {
+            localStorage.removeItem('pairing-token')
+            navigate(urls.loginPage)
+          } else {
+            /* TODO: Go to a different Unknown Error Page */
+            navigate(urls.loginPage)
+          }
+          
         }
-
+      } catch (error) {
+        /* TODO: Go to a different Unknown Error Page */
+        setDashboardIsLoading(false)
       }
+      
 
     }
 

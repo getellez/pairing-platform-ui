@@ -6,9 +6,13 @@ import { APP_NAME } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
 
 import './Signup.css'
+import 'antd/lib/spin/style/index.css'
+import { Spin } from "antd";
+
 
 export const Signup = () => {
   
+  const [isLoading, setisLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
   const { handleSubmit, setValue, register, formState: { errors } } = useForm({ email: '', password: '', dashboardName: '' })
@@ -20,15 +24,22 @@ export const Signup = () => {
   }
 
   const handleSignup = async (data) => {
-    const endpoint = '/api/v1/auth/signup'
-    const headers = {
-      "Content-type": "application/json; charset=UTF-8"
-    }
-    const signup = await sendApiRequest.post(endpoint, data, headers)
-    if (signup.statusCode === 201) {
-      navigate(urls.loginPage)
-    } else {
-      setErrorMessage(signup.data.message)
+    setisLoading(true)
+    try {
+      const endpoint = '/api/v1/auth/signup'
+      const headers = {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+      const signup = await sendApiRequest.post(endpoint, data, headers)
+      if (signup.statusCode === 201) {
+        navigate(urls.loginPage)
+      } else {
+        setisLoading(false)
+        setErrorMessage(signup.data.message)
+      }
+      
+    } catch (error) {
+      setisLoading(false)
     }
   }
 
@@ -119,10 +130,20 @@ export const Signup = () => {
               }
             </div>
             <div className='Signup__input-container'>
-              <input 
-              className="Signup__form-button"
-              type="submit" 
-              value="SIGNUP" />
+              {
+                isLoading && (
+                  <Spin />
+                  )
+                }
+              {
+                !isLoading && (
+                  <input 
+                  className="Signup__form-button"
+                  type="submit" 
+                  value="SIGNUP" />
+                )
+              }
+            
             </div>
           </form>
           <p className="Login__message">

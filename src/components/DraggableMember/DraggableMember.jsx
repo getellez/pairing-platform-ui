@@ -2,7 +2,9 @@ import { Input } from 'antd'
 import { useContext, useState } from 'react'
 import { Draggable } from "react-beautiful-dnd"
 import { DashboardContext } from '../../context/DashboardContext'
+
 import './DraggableMember.css'
+import 'antd/lib/spin/style/index.css'
 
 export const DraggableMember = ({ teamMember, index }) => {
   const { dashboardData } = useContext(DashboardContext)
@@ -32,38 +34,36 @@ export const DraggableMember = ({ teamMember, index }) => {
 
   return (
     <Draggable draggableId={member.id} index={index}>
-      {
-        (draggableProvided) => (
-          <div
-            {...draggableProvided.draggableProps}
-            ref={draggableProvided.innerRef}
-            {...draggableProvided.dragHandleProps}
-            className='draggable__member-container'
-          >
-            <img
-              className='draggable__member-avatar'
-              src={member.image}
-              alt={member.name}
-              width={100} />
-            
-            <div className='DraggableMember__container'>
-              <Input 
-                className="DraggableMember__input"
-                autoFocus={true}
-                htmlSize={15}
-                maxLength={15}
-                placeholder="Enter a new name"
-                bordered={false}
-                value={member.name}
-                onChange={handleChange}/>
-            </div>
-            <div className='draggable__member-remove' onClick={() => removeBenchMember(member.id)}>
-              <small>x</small>
-            </div>
-
-          </div>
-        )
-      }
+          {
+            (draggableProvided) => (
+              <div
+                {...draggableProvided.draggableProps}
+                ref={draggableProvided.innerRef}
+                {...draggableProvided.dragHandleProps}
+                className='draggable__member-container'
+              >
+                <img
+                  className='draggable__member-avatar'
+                  src={member.image}
+                  alt={member.name}
+                  width={100} />
+                <div className='DraggableMember__container'>
+                  <Input 
+                    className="DraggableMember__input"
+                    autoFocus={true}
+                    htmlSize={15}
+                    maxLength={15}
+                    placeholder="Enter a new name"
+                    bordered={false}
+                    value={member.name}
+                    onChange={handleChange}/>
+                </div>
+                <div className='draggable__member-remove' onClick={() => removeBenchMember(member.id)}>
+                  <small>x</small>
+                </div>
+              </div>
+            )
+          }
     </Draggable>
   )
 }

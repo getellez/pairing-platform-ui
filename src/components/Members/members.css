@@ -3,6 +3,12 @@
   padding: 15px;
 }
 
+.Members__loading {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 3rem;
+}
+
 .Members__container {
   align-items: center;
   background-color: white;
@@ -58,6 +64,10 @@
     display: flex;
   }
   .Members__bench {
+    display: flex;
+  }
+
+  .Members__loading {
     display: flex;
   }
 }

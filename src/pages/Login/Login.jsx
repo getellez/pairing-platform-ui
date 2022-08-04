@@ -4,10 +4,13 @@ import { sendApiRequest } from '../../utils/client';
 import { urls } from '../../config/urls';
 import { APP_NAME } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
+import { Spin } from 'antd';
 
 import './Login.css'
+import 'antd/lib/spin/style/index.css'
 
 export const Login = () => {
+  const [isLoading, setisLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const { register, setValue, handleSubmit, formState: { errors }} = useForm({ defaultValues: { dashboardName: '', password: '' } })
   const navigate = useNavigate()
@@ -15,23 +18,29 @@ export const Login = () => {
   const handleChange = ({ target }) => {
     const dashboardName = target.value;
     const newDashboardName = dashboardName.replace(/[^\w]+/g,'').toUpperCase()
-
     setValue('dashboardName', newDashboardName)
   }
 
   const handleLogin = async (data) => {
-    const url = '/api/v1/auth/signin';
-    const headers = {
-      "Content-type": "application/json; charset=UTF-8"
-    }
-    const login = await sendApiRequest.post(url, data, headers)
-    if (login.statusCode !== 200) {
-      setErrorMessage(login.data.message)
-    } else {
-      setErrorMessage('')
-      localStorage.setItem('pairing-token', JSON.stringify(login.data.token))
-      navigate(`/dashboards/${data.dashboardName}`)
-      window.location.reload()
+    setisLoading(true)
+    try {
+      const url = '/api/v1/auth/signin';
+      const headers = {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+      const login = await sendApiRequest.post(url, data, headers)
+      if (login.statusCode !== 200) {
+        setisLoading(false)
+        setErrorMessage(login.data.message)
+      } else {
+        setisLoading(false)
+        setErrorMessage('')
+        localStorage.setItem('pairing-token', JSON.stringify(login.data.token))
+        navigate(`/dashboards/${data.dashboardName}`)
+        window.location.reload()
+      }
+    } catch (error) {
+      setisLoading(false)
     }
   }
 
@@ -92,7 +101,16 @@ export const Login = () => {
               }
             </div>
             <div className='Login__input-container'>
-              <input className='Login__button' type="submit" value="LOGIN" />
+              {
+                isLoading && <Spin />
+              }
+              {
+                !isLoading && (
+                  <input className='Login__button' type="submit" value={'LOGIN'} />
+                )
+              }
+              
+              
             </div>
           </form>
 
