@@ -5,16 +5,12 @@ export const dashboardReducer = (state, action) => {
   switch (action.type) {
     case 'add_member':
       return {...state, members: [...state.members, action.payload]}
-    
     case 'initial_state':
       return action.payload
-
     case 'move_team_member':
       return action.payload
-
     case 'add_task':
       return {...state, tasks: [...state.tasks, action.payload]}
-    
     case 'update_task_member_name':
       for (let i = 0; i < newState.tasks.length; i++) {
         const task = newState.tasks[i];
@@ -30,7 +26,6 @@ export const dashboardReducer = (state, action) => {
         }
       }
       return newState
-    
     case 'update_bench_member':
       const benchMembers = newState.members.map(m => {
         if (m.id === action.payload.id) {
@@ -40,7 +35,6 @@ export const dashboardReducer = (state, action) => {
       })
       newState.members = benchMembers
       return newState
-
     case 'update_task_title':
       const newTasks = newState.tasks.map(task => {
         if (task.id == action.payload.taskId) {
@@ -50,7 +44,6 @@ export const dashboardReducer = (state, action) => {
       })
       newState.tasks = newTasks
       return newState
-
     case 'remove_task':
       const taskIndex = newState.tasks.findIndex(task => task.id === action.payload.taskId)
       const assignedMembers = newState.tasks[taskIndex].assignedMembers
@@ -66,7 +59,20 @@ export const dashboardReducer = (state, action) => {
       const memberIdx = newState.tasks[taskIdx].assignedMembers.findIndex(member => member.id === action.payload.memberId)
       newState.tasks[taskIdx].assignedMembers.splice(memberIdx, 1)
       return newState
+    case 'reset_task_members':
+
+      let taskMembers = []
+      
+      for (const task of newState.tasks) {
+        task.assignedMembers.map((member, index) => {
+          taskMembers.push(member)
+        })
+        task.assignedMembers = []
+      }
+      newState.members = [...newState.members, ...taskMembers]
+      return newState
     }
+
 
   return state
 }

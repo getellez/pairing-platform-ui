@@ -109,6 +109,13 @@ export const useDashboard = () => {
       payload: dashboard
     })
   }
+
+  const resetTaskMembers = () => {
+    dispatch({
+      type: 'reset_task_members',
+      payload: null
+    })
+  }
   
   return {
     dashboard,
@@ -122,5 +129,6 @@ export const useDashboard = () => {
     removeTask,
     removeBenchMember,
     removeTaskMember,
+    resetTaskMembers
   }
 }
