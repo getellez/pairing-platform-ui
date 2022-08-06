@@ -1,12 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { urls } from '../../config/urls';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+import { urls } from '../../config/urls';
 import { DashboardContext } from '../../context/DashboardContext';
 
 export const Controls = () => {
   
   const { dashboardData } = useContext(DashboardContext)
-  const { resetTaskMembers, randomTaskMembers } = dashboardData
+  const { resetTaskMembers, randomTaskMembers, dashboard } = dashboardData
   const navigate = useNavigate()
 
   const handleLogout = (e) => {
@@ -15,10 +16,22 @@ export const Controls = () => {
     window.location.reload()
   }
 
+  const handleShuffleTaskMembers = () => {
+    let taskMembersCounter = 0
+    for (const task of dashboard.tasks) {
+      taskMembersCounter += task.assignedMembers.length
+    }
+    if (taskMembersCounter === 0) {
+      toast.error(`There must be members assigned to tasks` );
+    } else {
+      randomTaskMembers()
+    }
+  }
   return (
     <section className='control'>
-        <div className='control__action' onClick={randomTaskMembers}>
+        <div className='control__action' onClick={handleShuffleTaskMembers}>
           <p>Random</p>
+          <Toaster />
         </div>
         <div className='control__action' onClick={resetTaskMembers}>
           <p>Reset</p>
