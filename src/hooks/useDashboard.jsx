@@ -116,6 +116,13 @@ export const useDashboard = () => {
       payload: null
     })
   }
+
+  const randomTaskMembers = () => {
+    dispatch({
+      type: 'random_task_members',
+      payload: null
+    })
+  }
   
   return {
     dashboard,
@@ -129,6 +136,7 @@ export const useDashboard = () => {
     removeTask,
     removeBenchMember,
     removeTaskMember,
-    resetTaskMembers
+    resetTaskMembers,
+    randomTaskMembers
   }
 }

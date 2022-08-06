@@ -1,6 +1,9 @@
+import { getMembersFromTasks, setRandomMembersToTasks } from "../utils/dashboard";
+
 export const dashboardReducer = (state, action) => {
   
   let newState = { ...state };
+  let taskMembers = []
 
   switch (action.type) {
     case 'add_member':
@@ -60,9 +63,6 @@ export const dashboardReducer = (state, action) => {
       newState.tasks[taskIdx].assignedMembers.splice(memberIdx, 1)
       return newState
     case 'reset_task_members':
-
-      let taskMembers = []
-      
       for (const task of newState.tasks) {
         task.assignedMembers.map((member, index) => {
           taskMembers.push(member)
@@ -71,6 +71,12 @@ export const dashboardReducer = (state, action) => {
       }
       newState.members = [...newState.members, ...taskMembers]
       return newState
+    case 'random_task_members':
+      taskMembers = getMembersFromTasks(newState.tasks)
+      const tasksWithRandomMembers = setRandomMembersToTasks(newState.tasks, taskMembers)
+      newState.tasks = tasksWithRandomMembers
+      return newState
+
     }
 
 

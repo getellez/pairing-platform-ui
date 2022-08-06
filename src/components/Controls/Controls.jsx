@@ -6,7 +6,7 @@ import { DashboardContext } from '../../context/DashboardContext';
 export const Controls = () => {
   
   const { dashboardData } = useContext(DashboardContext)
-  const { resetTaskMembers } = dashboardData
+  const { resetTaskMembers, randomTaskMembers } = dashboardData
   const navigate = useNavigate()
 
   const handleLogout = (e) => {
@@ -17,7 +17,10 @@ export const Controls = () => {
 
   return (
     <section className='control'>
-        <div className='control__action' onClick={resetTaskMembers }>
+        <div className='control__action' onClick={randomTaskMembers}>
+          <p>Random</p>
+        </div>
+        <div className='control__action' onClick={resetTaskMembers}>
           <p>Reset</p>
         </div>
         <div className='control__action' onClick={handleLogout}>
