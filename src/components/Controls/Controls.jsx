@@ -4,6 +4,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { urls } from '../../config/urls';
 import { DashboardContext } from '../../context/DashboardContext';
 
+import './Controls.css'
+
 export const Controls = () => {
   
   const { dashboardData } = useContext(DashboardContext)
@@ -28,15 +30,15 @@ export const Controls = () => {
     }
   }
   return (
-    <section className='control'>
-        <div className='control__action' onClick={handleShuffleTaskMembers}>
+    <section className='Control'>
+        <div className='Control__action' onClick={handleShuffleTaskMembers}>
           <p>Random</p>
           <Toaster />
         </div>
-        <div className='control__action' onClick={resetTaskMembers}>
+        <div className='Control__action' onClick={resetTaskMembers}>
           <p>Reset</p>
         </div>
-        <div className='control__action' onClick={handleLogout}>
+        <div className='Control__action' onClick={handleLogout}>
           <p>Logout</p>
         </div>
     </section>

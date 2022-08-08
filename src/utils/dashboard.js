@@ -14,15 +14,23 @@ export const getMembersFromTasks = (tasks) => {
 }
 
 export const setRandomMembersToTasks = (tasks, members) => {
-  const auxTasks = [...tasks]
+  const auxTasks = arrayShuffle([...tasks])
   const shuffledMembers = arrayShuffle(members)
   
   while (shuffledMembers.length >= 1) {
-    for (const task of auxTasks) {
-      const newMember = shuffledMembers.pop()
-      task.assignedMembers = [...task.assignedMembers, newMember]
-      if (shuffledMembers.length < 1) break
+    
+    if (shuffledMembers.length === 1) {
+      const randomIndex = Math.floor(Math.random()*auxTasks.length);
+      auxTasks[randomIndex].assignedMembers = [...auxTasks[randomIndex].assignedMembers, shuffledMembers.pop()]
+    } else {
+      for (const task of auxTasks) {
+        if (shuffledMembers.length <= 1) break
+        const newMember = shuffledMembers.pop()
+        task.assignedMembers = [...task.assignedMembers, newMember]
+      }
     }
+
   }
+
   return auxTasks
 }

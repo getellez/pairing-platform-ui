@@ -76,7 +76,6 @@ export const dashboardReducer = (state, action) => {
       const tasksWithRandomMembers = setRandomMembersToTasks(newState.tasks, taskMembers)
       newState.tasks = tasksWithRandomMembers
       return newState
-
     }
 
 

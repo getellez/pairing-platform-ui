@@ -3,19 +3,7 @@
   padding: 20px 5px;
 }
 
-.control {
-  display: flex;
-  justify-content: end;
-}
 
-.control__action {
-  margin: 0 5px;
-  background-color: #7FC8F8;
-  padding: 10px 25px;
-  border-radius: 3px;
-  color: #FFF;
-  cursor: pointer;
-}
 
 
 
