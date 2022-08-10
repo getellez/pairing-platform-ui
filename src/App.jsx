@@ -21,6 +21,11 @@ function App() {
             <Login />
           </PublicRoute>
           } />
+          <Route path={urls.customLoginPage} element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+          } />
           <Route path={urls.signupPage} element={<Signup />} />
           <Route path='/*' element={<DashboardRouter />} />
         </Routes>

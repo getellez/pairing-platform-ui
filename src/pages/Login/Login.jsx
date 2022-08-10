@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, useParams } from 'react-router-dom';
 import { sendApiRequest } from '../../utils/client';
 import { urls } from '../../config/urls';
 import { APP_NAME } from '../../utils/constants';
@@ -12,12 +12,16 @@ import 'antd/lib/spin/style/index.css'
 export const Login = () => {
   const [isLoading, setisLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const { register, setValue, handleSubmit, formState: { errors }} = useForm({ defaultValues: { dashboardName: '', password: '' } })
+  const { register, setValue, handleSubmit, formState: { errors } } = useForm({ defaultValues: { dashboardName: '', password: '' } })
   const navigate = useNavigate()
+  const { dashboardName } = useParams()
+  if (dashboardName) {
+    setValue('dashboardName', dashboardName)
+  }
 
   const handleChange = ({ target }) => {
     const dashboardName = target.value;
-    const newDashboardName = dashboardName.replace(/[^\w]+/g,'').toUpperCase()
+    const newDashboardName = dashboardName.replace(/[^\w]+/g, '').toUpperCase()
     setValue('dashboardName', newDashboardName)
   }
 
@@ -36,7 +40,7 @@ export const Login = () => {
         setisLoading(false)
         setErrorMessage('')
         localStorage.setItem('pairing-token', JSON.stringify(login.data.token))
-        navigate(`/dashboards/${data.dashboardName}`)
+        navigate(`/${data.dashboardName}`)
         window.location.reload()
       }
     } catch (error) {
@@ -48,37 +52,49 @@ export const Login = () => {
     <section className="Login">
       <div className="Login__column-left">
         <div className="Login__container-left">
+
+          <h1 className='Login__title'>
+            {
+              dashboardName
+                ? dashboardName
+                : APP_NAME
+            }
+          </h1>
           
-          <h1 className='Login__title'>{APP_NAME}</h1>
           <form onSubmit={handleSubmit(handleLogin)}>
             <div className='Login__input-container'>
-              <input
-                { 
-                  ...register("dashboardName", 
+              {
+                !dashboardName && <>
+                <input
                   {
-                    required: true,
-                    pattern: {
-                      value: /[\w]+/g,
-                      message: 'Only numbers and letters are valid'
-                    }
-                  })
+                  ...register("dashboardName",
+                    {
+                      required: true,
+                      pattern: {
+                        value: /[\w]+/g,
+                        message: 'Only numbers and letters are valid'
+                      }
+                    })
+                  }
+                  onChange={handleChange}
+                  type="text"
+                  className='Login__input'
+                  placeholder='Dashboard name'
+                />
+                {
+                  errors?.dashboardName?.message && (
+                    <div className='Login__error-container'>
+                      <p className='Login__error-field'>
+                        <small>
+                          {errors?.dashboardName?.message}
+                        </small>
+                      </p>
+                    </div>
+                  )
                 }
-                onChange={handleChange}
-                type="text"
-                className='Login__input'
-                placeholder='Dashboard name'
-              />
-            {
-              errors?.dashboardName?.message && (
-              <div className='Login__error-container'>
-                <p className='Login__error-field'>
-                  <small>
-                    { errors?.dashboardName?.message }
-                  </small>
-                </p>
-              </div>
-              )
-            }
+                </>
+              }
+              
             </div>
 
             <div className='Login__input-container'>
@@ -86,17 +102,17 @@ export const Login = () => {
                 className='Login__input'
                 type="password"
                 placeholder='Password'
-                { ...register("password", { required: "The password is required" }) }
+                {...register("password", { required: "The password is required" })}
               />
               {
                 errors?.password?.message && (
-                <div className='Login__error-container'>
-                  <p className='Login__error-field'>
-                    <small>
-                      { errors?.password?.message }
-                    </small>
-                  </p>
-                </div>
+                  <div className='Login__error-container'>
+                    <p className='Login__error-field'>
+                      <small>
+                        {errors?.password?.message}
+                      </small>
+                    </p>
+                  </div>
                 )
               }
             </div>
@@ -109,8 +125,8 @@ export const Login = () => {
                   <input className='Login__button' type="submit" value={'LOGIN'} />
                 )
               }
-              
-              
+
+
             </div>
           </form>
 
