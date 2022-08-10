@@ -9,22 +9,22 @@ export const DroppableMember = () => {
   const { dashboard } = dashboardData;
 
   return (
-    <Droppable droppableId='members' direction='horizontal'>
-      {
-        (droppableProvided) => (
-          <div
-            {...droppableProvided.droppableProps}
-            ref={droppableProvided.innerRef}
-            className="Members__bench">
-            { dashboard?.members &&
-              dashboard.members.map((member, index) => (
-                <DraggableMember key={member.id} teamMember={member} index={index} />
-              ))
-            }
-            {droppableProvided.placeholder}
-          </div>
-        )
-      }
-    </Droppable>
+      <Droppable droppableId='members' direction='horizontal'>
+        {
+          (droppableProvided) => (
+            <div
+              {...droppableProvided.droppableProps}
+              ref={droppableProvided.innerRef}
+              className="Members__bench">
+              { dashboard?.members &&
+                dashboard.members.map((member, index) => (
+                  <DraggableMember key={member.id} teamMember={member} index={index} />
+                ))
+              }
+              {droppableProvided.placeholder}
+            </div>
+          )
+        }
+      </Droppable>
   )
 }

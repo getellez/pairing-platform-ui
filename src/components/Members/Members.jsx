@@ -1,10 +1,11 @@
-import { DroppableMember } from '../DroppableMember/DroppableMember';
+import { Spin, Tooltip } from 'antd';
 import { useContext } from 'react';
+import { DroppableMember } from '../DroppableMember/DroppableMember';
 import { DashboardContext } from '../../context/DashboardContext';
-import { Spin } from 'antd';
 
 import './members.css'
 import 'antd/lib/spin/style/index.css'
+import 'antd/lib/tooltip/style/index.css'
 
 export const Members = () => {
   const { dashboardData, dashboardIsLoading } = useContext(DashboardContext)
@@ -12,7 +13,13 @@ export const Members = () => {
 
   return (
       <section className="Members">
-        <p className='dasboard__title'>Team members</p>
+        <p className='dasboard__title'>
+        <Tooltip className='Members__tooltip' title="People in this section won't be part of the shuffle">
+          <span >
+            Team members 
+          </span>
+        </Tooltip> 
+        </p>
         <div className="Members__container">
           <div 
             onClick={addNewMember}
