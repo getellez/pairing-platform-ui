@@ -21,15 +21,23 @@
   width: 100%;
 }
 
+.Signup__password-label {
+  font-weight: 300;
+  font-size: small;
+  text-align: right;
+  color: gray;
+}
+
 .Signup__form-button {
   background-color: #7FC8F8;
   border: 1px solid white;
-  border-radius: 5px;
+  border-radius: 1rem;
   color: white;
   font-weight: 700;
   padding: 10px 20px;
   width: 100%;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .Signup__input-container {

@@ -63,6 +63,7 @@ export const Signup = () => {
                     })
                   }
                   type="text" 
+                  autoComplete="organization"
                   onChange={handleChange}
                   className="Signup__input"
                   placeholder="Enter a dashboard name"
@@ -111,12 +112,15 @@ export const Signup = () => {
                 className="Signup__input"
                 placeholder="Password"
                 type="password"
+                autoComplete="new-password"
                 {
                   ...register("password", {
+                    minLength: 8,
                     required: "Enter a valid password"
                   })
                 }
-              />
+                />
+              <p className="Signup__password-label">At least 8 characters</p>
               {
                 errors?.password?.message && (
                 <div className='Signup__error-container'>
@@ -164,7 +168,7 @@ export const Signup = () => {
       <div className="Signup__container-right">
         <div className="Signup__description">
           <p>
-            { APP_NAME } is a platform based on the Pair Programming methodology that you can use to relate team members with tasks.
+            { APP_NAME } is a platform based on the Pair Programming methodology that you can use to assign team members to tasks.
           </p>
         </div>
       </div>
