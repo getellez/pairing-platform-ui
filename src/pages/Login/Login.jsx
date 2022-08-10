@@ -134,14 +134,17 @@ export const Login = () => {
       <div className="Login__column-right">
         <div className="Login__container-right">
           <div className="step-container">
-            <h1>1. Add your teammates to the dashboard</h1>
+            <h1>1. Add the team members</h1>
           </div>
           <div className="step-container">
             <h1>2. Create new tasks</h1>
           </div>
           <div className="step-container">
-            <h1>3. Drag and Drop the team members into a task</h1>
+            <h1>3. Drag and Drop the team members</h1>
           </div>
+        </div>
+        <div className="Latam">
+          <small>Developed with 🤍 by Germán </small>
         </div>
       </div>
 
