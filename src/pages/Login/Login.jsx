@@ -1,10 +1,11 @@
+import { Spin } from 'antd';
 import React, { useState } from 'react'
-import { useNavigate, NavLink, useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate, NavLink, useParams, useSearchParams } from 'react-router-dom';
 import { sendApiRequest } from '../../utils/client';
 import { urls } from '../../config/urls';
 import { APP_NAME } from '../../utils/constants';
-import { useForm } from 'react-hook-form';
-import { Spin } from 'antd';
 
 import './Login.css'
 import 'antd/lib/spin/style/index.css'
@@ -14,7 +15,11 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const { register, setValue, handleSubmit, formState: { errors } } = useForm({ defaultValues: { dashboardName: '', password: '' } })
   const navigate = useNavigate()
-  const { dashboardName } = useParams()
+  const { dashboardName, status } = useParams()
+  const params = useParams()
+  const [searchParams] = useSearchParams();
+  const signupStatus = searchParams.get('status') === 'ok'
+  
   if (dashboardName) {
     setValue('dashboardName', dashboardName)
   }
@@ -53,6 +58,14 @@ export const Login = () => {
       <div className="Login__column-left">
         <div className="Login__container-left">
 
+          {
+            signupStatus && (
+              <p className='Login__message-success animate__animated animate__fadeOut'>
+                Your account was created succesfully.
+              </p>
+              
+            )
+          }
           <h1 className='Login__title'>
             {
               dashboardName
@@ -60,8 +73,10 @@ export const Login = () => {
                 : APP_NAME
             }
           </h1>
+
           
           <form onSubmit={handleSubmit(handleLogin)}>
+            <Toaster />
             <div className='Login__input-container'>
               {
                 !dashboardName && <>
@@ -104,6 +119,8 @@ export const Login = () => {
                 placeholder='Password'
                 {...register("password", { required: "The password is required" })}
               />
+              <p className="Login__password-label">At least 8 characters</p>
+
               {
                 errors?.password?.message && (
                   <div className='Login__error-container'>

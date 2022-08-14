@@ -32,7 +32,7 @@ export const Signup = () => {
       }
       const signup = await sendApiRequest.post(endpoint, data, headers)
       if (signup.statusCode === 201) {
-        navigate(urls.loginPage)
+        navigate(`${urls.loginPage}?status=ok`)
       } else {
         setisLoading(false)
         setErrorMessage(signup.data.message)
