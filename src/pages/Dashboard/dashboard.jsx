@@ -20,12 +20,12 @@ export const Dashboard = () => {
 
   useEffect(() => {
     const getDashboard = async () => {
+      setDashboardIsLoading(true)
       try {
         const tokenPayload = getTokenPayload()
         if (!tokenPayload) {
           navigate(urls.loginPage)
         } else {
-          setDashboardIsLoading(true)
           const authTokenHeader = getTokenHeader()
           const dashboardName = tokenPayload.dashboardName
           const endpoint = `/api/v1/dashboards/${dashboardName}`
@@ -37,14 +37,11 @@ export const Dashboard = () => {
             localStorage.removeItem('pairing-token')
             navigate(urls.loginPage)
           } else {
-            /* TODO: Go to a different Unknown Error Page */
             navigate(urls.loginPage)
           }
-          
         }
       } catch (error) {
-        /* TODO: Go to a different Unknown Error Page */
-        setDashboardIsLoading(false)
+        navigate(urls.loginPage, { replace: true })
       }
       
 
