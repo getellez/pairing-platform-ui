@@ -76,6 +76,9 @@ export const dashboardReducer = (state, action) => {
       const tasksWithRandomMembers = setRandomMembersToTasks(newState.tasks, taskMembers)
       newState.tasks = tasksWithRandomMembers
       return newState
+    case 'random_all_task_members':
+      console.log('This feature is not implemented yet :(');
+      return newState
     }
 
 

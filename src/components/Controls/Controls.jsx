@@ -9,7 +9,7 @@ import './Controls.css'
 export const Controls = () => {
   
   const { dashboardData } = useContext(DashboardContext)
-  const { resetTaskMembers, randomTaskMembers, dashboard } = dashboardData
+  const { resetTaskMembers, randomTaskMembers, randomAllTaskMembers, dashboard } = dashboardData
   const navigate = useNavigate()
 
   const handleLogout = (e) => {
@@ -17,7 +17,9 @@ export const Controls = () => {
     navigate(urls.loginPage)
     window.location.reload()
   }
-
+  const handleShuffleAllTaskMembers = () => {
+    randomAllTaskMembers()
+  }
   const handleShuffleTaskMembers = () => {
     let taskMembersCounter = 0
     for (const task of dashboard.tasks) {
@@ -31,9 +33,12 @@ export const Controls = () => {
   }
   return (
     <section className='Control'>
+        <Toaster />
         <div className='Control__action' onClick={handleShuffleTaskMembers}>
           <p>Random</p>
-          <Toaster />
+        </div>
+        <div className='Control__action' onClick={handleShuffleAllTaskMembers}>
+          <p>Random All</p>
         </div>
         <div className='Control__action' onClick={resetTaskMembers}>
           <p>Reset</p>
