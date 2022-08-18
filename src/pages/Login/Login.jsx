@@ -177,7 +177,7 @@ export const Login = () => {
           </div>
         </div>
         <div className="Latam">
-          <small>Developed with 🤍 by Germán </small>
+          <small>Developed with 🤍 by LATAM </small>
         </div>
       </div>
 
