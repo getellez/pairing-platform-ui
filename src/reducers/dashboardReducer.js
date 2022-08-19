@@ -4,7 +4,7 @@ export const dashboardReducer = (state, action) => {
   
   let newState = { ...state };
   let taskMembers = []
-
+  let tasksWithRandomMembers;
   switch (action.type) {
     case 'add_member':
       return {...state, members: [...state.members, action.payload]}
@@ -73,11 +73,14 @@ export const dashboardReducer = (state, action) => {
       return newState
     case 'random_task_members':
       taskMembers = getMembersFromTasks(newState.tasks)
-      const tasksWithRandomMembers = setRandomMembersToTasks(newState.tasks, taskMembers)
+      tasksWithRandomMembers = setRandomMembersToTasks(newState.tasks, taskMembers)
       newState.tasks = tasksWithRandomMembers
       return newState
     case 'random_all_task_members':
-      console.log('This feature is not implemented yet :(');
+      taskMembers = [...getMembersFromTasks(newState.tasks), ...newState.members]
+      newState.members = []
+      tasksWithRandomMembers = setRandomMembersToTasks(newState.tasks, taskMembers)
+      newState.tasks = tasksWithRandomMembers
       return newState
     }
 
