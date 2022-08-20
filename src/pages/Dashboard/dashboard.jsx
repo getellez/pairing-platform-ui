@@ -76,7 +76,7 @@ export const Dashboard = () => {
   }, [dashboard])
 
   return (
-    <section className='Dashboard'>
+    <section className='Dashboard' style={{backgroundColor: bgColor}}>
       <Navbar />
       <DragDropContext onDragEnd={handleSortMembers}>
         <section className='Dashboard__content' style={{backgroundColor: bgColor}}>

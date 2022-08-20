@@ -11,6 +11,7 @@ export const lightTheme = {
   primaryColor: '#7fc8f8',
   secondaryColor: '#F9F9F9',
   thirdColor: '#ffffff',
+  fourthColor: '#7fc8f8ba',
   textPrimaryColor: '#000000',
   textSecondaryColor: '#ffffff'
 }

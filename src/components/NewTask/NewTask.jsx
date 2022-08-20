@@ -8,7 +8,7 @@ export const NewTask = () => {
   
   const { dashboardData, darkMode } = useContext(DashboardContext)
   const { addNewTask } = dashboardData;
-  const addTaskBgColor = darkMode?darkTheme.thirdColor: lightTheme.primaryColor
+  const addTaskBgColor = darkMode?darkTheme.thirdColor: lightTheme.fourthColor
   return (
     <div className='NewTask' onClick={addNewTask}>
       <div className='NewTask__header-container' style={{backgroundColor: addTaskBgColor}}>

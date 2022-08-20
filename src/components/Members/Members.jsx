@@ -13,7 +13,7 @@ export const Members = () => {
   const { addNewMember } = dashboardData;
   const textColor = darkMode?darkTheme.textPrimaryColor:lightTheme.textPrimaryColor
   const taskBgColor = darkMode?darkTheme.secondaryColor:lightTheme.thirdColor
-  const addBtnBgColor = darkMode?darkTheme.thirdColor:lightTheme.primaryColor
+  const addBtnBgColor = darkMode?darkTheme.thirdColor:lightTheme.secondaryColor
 
   return (
       <section className="Members" style={{color: textColor}}>
