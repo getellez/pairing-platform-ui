@@ -17,6 +17,7 @@ export const Navbar = () => {
 
   const handleToggleDarkTheme = (e) => {
     setDarkMode(!darkMode)
+    localStorage.setItem('pairing-theme', !darkMode)
   }
 
 
@@ -30,7 +31,7 @@ export const Navbar = () => {
           </h1>
         </div>
         <div className="navbar__theme">
-          <Switch checkedChildren="🌙" unCheckedChildren="☀️" onClick={handleToggleDarkTheme} />
+          <Switch defaultChecked={darkMode} checkedChildren="🌙" unCheckedChildren="☀️" onClick={handleToggleDarkTheme} />
         </div>
     </section>
   )

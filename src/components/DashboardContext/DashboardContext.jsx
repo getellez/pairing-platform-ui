@@ -6,7 +6,8 @@ import { useDashboard } from '../../hooks/useDashboard';
 export const DashboardContextProvider = ({ children }) => {
   const [dashboardIsLoading, setDashboardIsLoading] = useState(false)
   const dashboard = useDashboard()
-  const [darkMode, setDarkMode] = useState(false)
+  const isDarkMode = localStorage.getItem('pairing-theme') || false
+  const [darkMode, setDarkMode] = useState(isDarkMode)
 
   return (
     <DashboardContext.Provider value={{ dashboardData: dashboard, dashboardIsLoading, setDashboardIsLoading, darkMode, setDarkMode }}>
