@@ -1,5 +1,8 @@
-.dashboard {
+.Dashboard {
   height: 100%;
+}
+
+.Dashboard__content {
   padding: 20px 5px;
 }
 

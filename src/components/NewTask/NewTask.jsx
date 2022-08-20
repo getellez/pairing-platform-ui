@@ -2,15 +2,16 @@ import { useContext } from 'react';
 import { DashboardContext } from '../../context/DashboardContext';
 
 import './NewTask.css'
+import { darkTheme, lightTheme } from '../../utils/theme';
 
 export const NewTask = () => {
   
-  const { dashboardData } = useContext(DashboardContext)
+  const { dashboardData, darkMode } = useContext(DashboardContext)
   const { addNewTask } = dashboardData;
-
+  const addTaskBgColor = darkMode?darkTheme.thirdColor: lightTheme.primaryColor
   return (
     <div className='NewTask' onClick={addNewTask}>
-      <div className='NewTask__header-container'>
+      <div className='NewTask__header-container' style={{backgroundColor: addTaskBgColor}}>
         <div className="NewTask__add-icon">
           <i className="fa-solid fa-plus"></i>
         </div>

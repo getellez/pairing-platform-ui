@@ -9,7 +9,6 @@
 .task__wrapper {
   border: 0.5px solid rgba(0, 0, 0, 0.09);
   border-radius: 10px;
-  background-color: white;
   position: relative;
   overflow: hidden;
   padding: 10px;

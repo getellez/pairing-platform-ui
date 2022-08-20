@@ -6,10 +6,11 @@ import { DashboardContext } from "../../context/DashboardContext";
 
 
 import './DraggableTaskMember.css'
+import { darkTheme, lightTheme } from "../../utils/theme";
 
 export const DraggableTaskMember = ({ member, index, taskId }) => {
 
-  const { dashboardData } = useContext(DashboardContext)
+  const { dashboardData, darkMode } = useContext(DashboardContext)
   const { updateTaskMemberName, removeTaskMember } = dashboardData;
   const [memberName, setMemberName] = useState(member.name)
   
@@ -17,12 +18,14 @@ export const DraggableTaskMember = ({ member, index, taskId }) => {
     setMemberName(e.target.value)
     updateTaskMemberName(taskId, member.id, e.target.value)
   }
+  const taskTextColor = darkMode?darkTheme.textPrimaryColor:lightTheme.textPrimaryColor
   
   const inputStyle = {
     padding: 0,
     fontWeight: 300,
     fontFamily:'Roboto',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: taskTextColor
   }
   return (
     <Draggable  draggableId={member.id} index={index}>

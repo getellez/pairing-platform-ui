@@ -6,8 +6,6 @@
 .NewTask__header-container {
   border-radius: 10px;
   border: 2px dashed white;
-  background-color: #7FC8F8;
-  color: white;
   cursor: pointer;
   text-align: center;
   padding: 1rem;
@@ -15,7 +13,6 @@
 
 .NewTask__header-title {
   font-weight: 400;
-  color: white;
   font-size: 0.8rem;
 }
 

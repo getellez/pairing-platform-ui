@@ -11,12 +11,15 @@ import { urls } from '../../config/urls';
 
 import './dashboard.css'
 import { Navbar } from '../../components/Navbar/Navbar';
+import { darkTheme, lightTheme } from '../../utils/theme';
 
 export const Dashboard = () => {
   
-  const { dashboardData, setDashboardIsLoading } = useContext(DashboardContext)
-  const { dashboard, handleSortMembers, getInitialDashboardData } = dashboardData;
   const navigate = useNavigate()
+  const { dashboardData, setDashboardIsLoading, darkMode } = useContext(DashboardContext)
+  const { dashboard, handleSortMembers, getInitialDashboardData } = dashboardData;
+  const bgColor = darkMode?darkTheme.primaryColor:lightTheme.secondaryColor
+
 
   useEffect(() => {
     const getDashboard = async () => {
@@ -73,10 +76,10 @@ export const Dashboard = () => {
   }, [dashboard])
 
   return (
-    <>
+    <section className='Dashboard'>
       <Navbar />
       <DragDropContext onDragEnd={handleSortMembers}>
-        <section className='dashboard'>
+        <section className='Dashboard__content' style={{backgroundColor: bgColor}}>
           <Controls />
           <Members />
           <TasksList>
@@ -89,6 +92,6 @@ export const Dashboard = () => {
         </section>
       </DragDropContext>
 
-    </>
+    </section>
   )
 }

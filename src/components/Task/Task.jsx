@@ -6,13 +6,16 @@ import { DashboardContext } from '../../context/DashboardContext';
 
 import 'antd/lib/input/style/index.css'
 import './task.css'
+import { darkTheme, lightTheme } from '../../utils/theme';
 
 export const Task = ({ id, title, assignedMembers }) => {
 
   const inputRef = useRef()
   const [ task, setTask ] = useState({id, title, assignedMembers})
-  const { dashboardData } = useContext(DashboardContext)
+  const { dashboardData, darkMode } = useContext(DashboardContext)
   const { updateTaskTitle, removeTask } = dashboardData;
+  const taskBgColor = darkMode?darkTheme.secondaryColor:lightTheme.thirdColor
+  const taskTextColor = darkMode?darkTheme.textPrimaryColor:lightTheme.textPrimaryColor
 
   const handleOnChange = (e) => {
     setTask({
@@ -44,7 +47,8 @@ export const Task = ({ id, title, assignedMembers }) => {
     padding: 0,
     fontWeight: 300,
     fontFamily:'Roboto',
-    width: '50%'
+    width: '50%',
+    color: taskTextColor
   }
 
   return (
@@ -52,7 +56,7 @@ export const Task = ({ id, title, assignedMembers }) => {
     {
       id && (
         <div className='task__column'>
-          <div className='task__wrapper'>
+          <div className='task__wrapper' style={{backgroundColor: taskBgColor}}>
             
             <div className='task__header-container'>
 

@@ -5,13 +5,13 @@ import { DashboardContext } from '../../context/DashboardContext'
 
 import './DraggableMember.css'
 import 'antd/lib/spin/style/index.css'
+import { darkTheme, lightTheme } from '../../utils/theme';
 
 export const DraggableMember = ({ teamMember, index }) => {
-  const { dashboardData } = useContext(DashboardContext)
+  const { dashboardData, darkMode } = useContext(DashboardContext)
   const { updateBenchMember, removeBenchMember } = dashboardData;
-
   const [member, setMember] = useState(teamMember)
-  
+  const memberTextColor = darkMode?darkTheme.textPrimaryColor:lightTheme.textPrimaryColor
   const handleChange = ({ target }) => {
     let imageUrl;
     if (!target.value) {
@@ -49,6 +49,7 @@ export const DraggableMember = ({ teamMember, index }) => {
                   width={100} />
                 <div className='DraggableMember__container'>
                   <Input 
+                    style={{color: memberTextColor}}
                     className="DraggableMember__input"
                     autoFocus={true}
                     htmlSize={15}

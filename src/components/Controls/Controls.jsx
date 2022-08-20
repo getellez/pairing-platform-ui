@@ -5,11 +5,15 @@ import { urls } from '../../config/urls';
 import { DashboardContext } from '../../context/DashboardContext';
 
 import './Controls.css'
+import { darkTheme, lightTheme } from '../../utils/theme';
 
 export const Controls = () => {
   
-  const { dashboardData } = useContext(DashboardContext)
+  const { dashboardData, darkMode } = useContext(DashboardContext)
   const { resetTaskMembers, randomTaskMembers, randomAllTaskMembers, dashboard } = dashboardData
+  const btnTextColor = darkMode?darkTheme.textSecondaryColor:lightTheme.textSecondaryColor
+  const btnBgColor = darkMode?darkTheme.fourthColor:lightTheme.primaryColor
+
   const navigate = useNavigate()
 
   const handleLogout = (e) => {
@@ -32,18 +36,18 @@ export const Controls = () => {
     }
   }
   return (
-    <section className='Control'>
+    <section className='Control' style={{color: btnTextColor}}>
         <Toaster />
-        <div className='Control__action' onClick={handleShuffleTaskMembers}>
+        <div style={{backgroundColor: btnBgColor}} className='Control__action' onClick={handleShuffleTaskMembers}>
           <p>Random</p>
         </div>
-        <div className='Control__action' onClick={handleShuffleAllTaskMembers}>
+        <div style={{backgroundColor: btnBgColor}} className='Control__action' onClick={handleShuffleAllTaskMembers}>
           <p>Random All</p>
         </div>
-        <div className='Control__action' onClick={resetTaskMembers}>
+        <div style={{backgroundColor: btnBgColor}} className='Control__action' onClick={resetTaskMembers}>
           <p>Reset</p>
         </div>
-        <div className='Control__action' onClick={handleLogout}>
+        <div style={{backgroundColor: btnBgColor}} className='Control__action' onClick={handleLogout}>
           <p>Logout</p>
         </div>
     </section>
